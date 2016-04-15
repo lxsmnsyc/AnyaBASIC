@@ -12,35 +12,28 @@
 			shift (32-bit)
 
 		functions:
-			Not4(a)
-				- performs a 4-bit NOT operation on int a
-			And4(a, b)
+			function And4(and4A, and4B)
 				- 4-bit AND (a AND b)
-			Or4(a, b)
+			function Or4(or4A, or4B)
 				- 4-bit OR (a OR b)
-			Xor4(a, b)
+			function Xor4(xor4A, xor4B)
 				- 4-bit XOR (a XOR b)
 
-			Not8(a)
-			And8(a, b)
-			Or8(a, b)
-			Xor8(a, b)
+			function And8(and8A, and8B)
+			function Or8(or8A, or8B)
+			function Xor8(xor8A, xor8B)
 
-			Not16(a)
-			And16(a, b)
-			Or16(a, b)
-			Xor16(a, b)
+			function And16(and16A, and16B)
+			function Or16(or16A ,or16B)
+			function Xor16(xor16A, xor16B)
 
-			Not32(a)
-			And32(a, b)
-			Or32(a, b)
-			Xor32(a, b)
+			function Not32(not32A)
+			function And32(and32A, and32B)
+			function Or32(or32A, or32B)
+			function Xor32(xor32A, xor32B)
 
-			LShift(a, shifts)
-			RShift(a, shifts)
-
-			LRot(a, shifts)
-			RRot(a, shifts)
+			function LShift(toLShift, lshifts)
+			function RShift(toRShift, rshifts)
 
 	Variables and functions names(to prevent collision, you should name your variables and functions not equal to the ff):
 		Variables:
