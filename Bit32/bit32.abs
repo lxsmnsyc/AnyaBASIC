@@ -1318,145 +1318,114 @@ start
 	shift[30] = 1073741824
 	shift[31] = -2147483648
 	
-	function Not4(a)
+	function And4(and4A, and4B)
 	start
-		return 15 - a
+		return SAND[and4A*16 + and4B]
 	end
 	
-	function And4(a, b)
+	function Or4(or4A, or4B)
 	start
-		return SAND[a*16 + b]
+		return SOR[or4A*16 + or4B]
 	end
 	
-	function Or4(a, b)
+	function Xor4(xor4A, xor4B)
 	start
-		return SOR[a*16 + b]
+		return SXOR[xor4A*16 + xor4B]
 	end
 	
-	function Xor4(a, b)
+	function And8(and8A, and8B)
 	start
-		return SXOR[a*16 + b]
+		return And4(left[and8A], left[and8B])*16 + And4(right[and8A], right[and8B])
 	end
 	
-	function Not8(a)
+	function Or8(or8A, or8B)
 	start
-		return Not4(left[a])*16 + Not4(right[a])
+		return Or4(left[or8A], left[or8B])*16 + Or4(right[or8A], right[or8B])
 	end
 	
-	function And8(a, b)
+	function Xor8(xor8A, xor8B)
 	start
-		return And4(left[a], left[b])*16 + And4(right[a], right[b])
+		return Xor4(left[xor8A], left[xor8B])*16 + Xor4(right[xor8A], right[xor8B])
 	end
 	
-	function Or8(a, b)
+	function And16(and16A, and16B)
 	start
-		return Or4(left[a], left[b])*16 + Or4(right[a], right[b])
-	end
-	
-	function Xor8(a, b)
-	start
-		return Xor4(left[a], left[b])*16 + Xor4(right[a], right[b])
-	end
-	
-	function Not16(a)
-	start
-		return Not8(FLOOR(a/256))*256 + Not8(a%256)
-	end
-	
-	function And16(a, b)
-	start
-		return And8(FLOOR(a/256), FLOOR(b/256))*256 + And8(a%256, b%256)
+		return And8(FLOOR(and16A/256), FLOOR(and16B/256))*256 + And8(and16A%256, and16B%256)
 	end 
 	
-	function Or16(a ,b)
+	function Or16(or16A ,or16B)
 	start
-		return Or8(FLOOR(a/256), FLOOR(b/256))*256 + Or8(a%256, b%256)
+		return Or8(FLOOR(or16A/256), FLOOR(or16B/256))*256 + Or8(or16A%256, or16B%256)
 	end 
 	
-	function Xor16(a, b)
+	function Xor16(xor16A, xor16B)
 	start
-		return Xor8(FLOOR(a/256), FLOOR(b/256))*256 + Xor8(a%256, b%256)
+		return Xor8(FLOOR(xor16A/256), FLOOR(xor16B/256))*256 + Xor8(xor16A%256, xor16B%256)
 	end 
 	
-	function Not32(a)
+	function Not32(not32A)
 	start
-		b1 = 0
-		if(a < 0)then
-		start
-			a = -2147483648 + a
-			b1 = 128
-		end
-		return Not16(b1 + FLOOR(a/65536))*65536 + Not16(a%65536)
+		return -not32A - 1
 	end
 	
-	function And32(a, b)
+	function And32(and32A, and32B)
 	start
 		b1 = 0
 		b2 = 0
-		if(a < 0)then
+		if(and32A < 0)then
 		start
-			a = -2147483648 + a
+			and32A = -2147483648 + and32A
 			b1 = 128
 		end
-		if(b < 0)then
+		if(and32B < 0)then
 		start
-			b = -2147483648 + b
+			and32B = -2147483648 + and32B
 			b1 = 128
 		end
-		return And16(b1 + FLOOR(a/65536), b2 + FLOOR(a/65536))*65536 + And16(a%65536, b%65536)
+		return And16(b1 + FLOOR(and32A/65536), b2 + FLOOR(and32B/65536))*65536 + And16(and32A%65536, and32B%65536)
 	end
 	
-	function Or32(a, b)
+	function Or32(or32A, or32B)
 	start
 		b1 = 0
 		b2 = 0
-		if(a < 0)then
+		if(or32A < 0)then
 		start
-			a = -2147483648 + a
+			or32A = -2147483648 + or32A
 			b1 = 128
 		end
-		if(b < 0)then
+		if(or32B < 0)then
 		start
-			b = -2147483648 + b
+			or32B = -2147483648 + or32B
 			b1 = 128
 		end
-		return Or16(b1 + FLOOR(a/65536), b2 + FLOOR(a/65536))*65536 + Or16(a%65536, b%65536)
+		return Or16(b1 + FLOOR(or32A/65536), b2 + FLOOR(or32B/65536))*65536 + Or16(or32A%65536, or32B%65536)
 	end
 	
-	function Xor32(a, b)
+	function Xor32(xor32A, xor32B)
 	start
 		b1 = 0
 		b2 = 0
-		if(a < 0)then
+		if(xor32A < 0)then
 		start
-			a = -2147483648 + a
+			xor32A = -2147483648 + xor32A
 			b1 = 128
 		end
-		if(b < 0)then
+		if(xor32B < 0)then
 		start
-			b = -2147483648 + b
+			xor32B = -2147483648 + xor32B
 			b1 = 128
 		end
-		return Xor16(b1 + FLOOR(a/65536), b2 + FLOOR(a/65536))*65536 + Xor16(a%65536, b%65536)
+		return Xor16(b1 + FLOOR(xor32A/65536), b2 + FLOOR(xor32B/65536))*65536 + Xor16(xor32A%65536, xor32B%65536)
 	end
 	
-	function LShift(a, shifts)
+	function LShift(toLShift, lshifts)
 	start
-		return a * shift[shifts]
+		return toLShift*shift[lshifts]
 	end
 	
-	function RShift(a, shifts)
+	function RShift(toRShift, rshifts)
 	start
-		return FLOOR(a/shift[shifts])
-	end
-	
-	function LRot(a, shifts)
-	start
-		return Or8(LShift(a, shifts), RShift(a, 32 - shifts))
-	end
-	
-	function RRot(a, shifts)
-	start
-		return Or8(RShift(a, shifts), LShift(a, 32 - shifts))
+		return FLOOR(toRShift/shift[rshifts])
 	end
 end
