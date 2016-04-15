@@ -1,0 +1,5 @@
+1.0
+- released
+1.1
+- removed bit4, bit8 and bit16 nots
+- removed rotations
