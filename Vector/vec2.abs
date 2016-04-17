@@ -24,20 +24,41 @@ start
     return newVec
   end
   
+  function vec2_set(vs, vsx, vsy)
+  start
+    vec2_x[vs] = vsx
+    vec2_y[vs] = vsy
+  end
+  
+  function vec2_apply(vta, vtb)
+  start
+    vec2_set(vta, vec2_x[vtb], vec2_y[vtb])
+  end
+  
   function vec2_angle(va)
   start
     return atan2(vec2_x[va], vec2_y[va])
   end
   
-  function vec2_dist2(vdt)
+  function vec2_length2(vlt)
   start
     return vec2_x[vdt]*vec2_x[vdt] + vec2_y[vdt]*vec2_y[vdt]
   end
   
-  function vec2_dist(vd)
+  function vec2_length(vl)
   start
-    return sqrt(vec2_dist2(vd))
+    return sqrt(vec2_dist2(vl))
   end
   
+  function vec2_setLength(vsl, nl)
+  start
+    newlen = nl/vec2_length(vsl)
+    vec2_x[vsl] = vec2_x[vsl]*newlen
+    vec2_y[vsl] = vec2_y[vsl]*newlen
+  end
   
+  function vec2_norm(vn)
+  start
+    vec2_setLength(vn, 1)
+  end
 end
