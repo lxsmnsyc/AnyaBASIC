@@ -1,0 +1,43 @@
+start
+  vec2_r[8192]
+  vec2_x[8192]
+  vec2_y[8192]
+  
+  function vec2_alloc()
+  start
+    head = vec2_r[0]
+    vec2_r[0] = vec2_r[head]
+    return head
+  end
+  
+  function vec2_dealloc(vec2alloc)
+  start
+    vec2_r[vec2alloc] = vec2_r[0]
+    vec2_r[0] = vec2alloc
+  end
+  
+  function vec2_new(vnx, vny)
+  start
+    newVec = vec2_alloc()
+    vec2_x[newVec] = vnx
+    vec2_y[newVec] = vny
+    return newVec
+  end
+  
+  function vec2_angle(va)
+  start
+    return atan2(vec2_x[va], vec2_y[va])
+  end
+  
+  function vec2_dist2(vdt)
+  start
+    return vec2_x[vdt]*vec2_x[vdt] + vec2_y[vdt]*vec2_y[vdt]
+  end
+  
+  function vec2_dist(vd)
+  start
+    return sqrt(vec2_dist2(vd))
+  end
+  
+  
+end
