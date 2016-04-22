@@ -1,0 +1,14 @@
+start
+  type Math
+  start
+    Pi = 3.14159265358979
+    E = 2.71828182845963
+  end
+  
+  function Int32(val)
+  start
+    if(val <= 2147483647 && val >= -2147483648) then return int(val)
+		else if(val > 2147483647) then return int32(-4294967296 + val)
+		else if(val < -2147483648) then return int32(4294967296 - val)
+  end
+end
