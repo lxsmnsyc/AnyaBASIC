@@ -1,5 +1,3 @@
-
-```lua
 #************************************************************************************
 *
 *	Bit32 by Alexis Munsayac
@@ -939,4 +937,3 @@ start
 		return Or32(RShift(toRRot, rrots), LShift(toRRot, 32 - rrots))
 	end
 end
-```
