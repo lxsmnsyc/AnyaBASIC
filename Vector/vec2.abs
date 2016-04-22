@@ -1,1 +1,39 @@
 
+start
+	type Vec2
+	start
+		x = 0
+		y = 0
+	end
+	
+	function Vec2Len2(v2lt)
+	start
+		return v2lt.x*v2lt.x + v2lt.y*v2lt.y
+	end
+	
+	function Vec2Len(v2l)
+	start 
+		return sqrt(Vec2Len2(v2l))
+	end
+	
+	function Vec2Angle(v2a)
+	start
+		return atan2(v2a.y, v2a.x)
+	end
+	
+	function Vec2Scale(v2s, v2sf)
+	start
+		v2s.x = v2s.x*v2sf
+		v2s.y = v2s.y*v2sf
+	end
+	
+	function Vec2SetLen(v2sl, v2nl)
+	start
+		Vec2Scale(v2sl, v2nl/Vec2Len(v2sl))
+	end
+	
+	function Vec2Norm(v2nm)
+	start
+		Vec2SetLen(v2nm, 1)
+	end
+end
