@@ -4,14 +4,16 @@
 
 	provides the following functions and tables:
 		tables:
+		```
 			SXOR (4 - bit)
 			SAND (4 - bit)
 			SOR  (4 - bit)
 			left (4 - bit)
 			right (4- bit)
 			shift (32-bit)
-
+		```
 		functions:
+		```
 			function And4(and4A, and4B)
 				- 4-bit AND (a AND b)
 			function Or4(or4A, or4B)
@@ -34,7 +36,7 @@
 
 			function LShift(toLShift, lshifts)
 			function RShift(toRShift, rshifts)
-
+		```
 	Variables and functions names(to prevent collision, you should name your variables and functions not equal to the ff):
 		Variables:
 			SXOR
