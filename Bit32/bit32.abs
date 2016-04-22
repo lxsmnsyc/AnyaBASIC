@@ -873,12 +873,12 @@ start
 		if (and32A < 0) then
 		start
 			and32A = int32(-2147483648 + and32A)
-			b1 = 128
+			b1 = 32768
 		end
 		if (and32B < 0) then
 		start
 			and32B = int32(-2147483648 + and32B)
-			b2 = 128
+			b2 = 32768
 		end
 		return int32(And16(b1 + int32(and32A/65536), b2 + int32(and32B/65536))*65536 + And16(and32A%65536, and32B%65536))
 	end
