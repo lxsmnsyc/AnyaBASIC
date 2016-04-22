@@ -1,5 +1,10 @@
+#************************************************************************************
+*
+*	Bit32 by Alexis Munsayac
+*
+************************************************************************************#
 start
-	SXOR[256]
+	var SXOR[256]
 	SXOR[0] = 0
 	SXOR[1] = 1
 	SXOR[2] = 2
@@ -256,7 +261,7 @@ start
 	SXOR[253] = 2
 	SXOR[254] = 1
 	SXOR[255] = 0
-	SAND[256]
+	var SAND[256]
 	SAND[0] = 0
 	SAND[1] = 0
 	SAND[2] = 0
@@ -513,7 +518,7 @@ start
 	SAND[253] = 13
 	SAND[254] = 14
 	SAND[255] = 15
-	SOR[256]
+	var SOR[256]
 	SOR[0] = 0
 	SOR[1] = 1
 	SOR[2] = 2
@@ -770,521 +775,7 @@ start
 	SOR[253] = 15
 	SOR[254] = 15
 	SOR[255] = 15
-	left[256]
-	left[0] = 0
-	left[1] = 0
-	left[2] = 0
-	left[3] = 0
-	left[4] = 0
-	left[5] = 0
-	left[6] = 0
-	left[7] = 0
-	left[8] = 0
-	left[9] = 0
-	left[10] = 0
-	left[11] = 0
-	left[12] = 0
-	left[13] = 0
-	left[14] = 0
-	left[15] = 0
-	left[16] = 1
-	left[17] = 1
-	left[18] = 1
-	left[19] = 1
-	left[20] = 1
-	left[21] = 1
-	left[22] = 1
-	left[23] = 1
-	left[24] = 1
-	left[25] = 1
-	left[26] = 1
-	left[27] = 1
-	left[28] = 1
-	left[29] = 1
-	left[30] = 1
-	left[31] = 1
-	left[32] = 2
-	left[33] = 2
-	left[34] = 2
-	left[35] = 2
-	left[36] = 2
-	left[37] = 2
-	left[38] = 2
-	left[39] = 2
-	left[40] = 2
-	left[41] = 2
-	left[42] = 2
-	left[43] = 2
-	left[44] = 2
-	left[45] = 2
-	left[46] = 2
-	left[47] = 2
-	left[48] = 3
-	left[49] = 3
-	left[50] = 3
-	left[51] = 3
-	left[52] = 3
-	left[53] = 3
-	left[54] = 3
-	left[55] = 3
-	left[56] = 3
-	left[57] = 3
-	left[58] = 3
-	left[59] = 3
-	left[60] = 3
-	left[61] = 3
-	left[62] = 3
-	left[63] = 3
-	left[64] = 4
-	left[65] = 4
-	left[66] = 4
-	left[67] = 4
-	left[68] = 4
-	left[69] = 4
-	left[70] = 4
-	left[71] = 4
-	left[72] = 4
-	left[73] = 4
-	left[74] = 4
-	left[75] = 4
-	left[76] = 4
-	left[77] = 4
-	left[78] = 4
-	left[79] = 4
-	left[80] = 5
-	left[81] = 5
-	left[82] = 5
-	left[83] = 5
-	left[84] = 5
-	left[85] = 5
-	left[86] = 5
-	left[87] = 5
-	left[88] = 5
-	left[89] = 5
-	left[90] = 5
-	left[91] = 5
-	left[92] = 5
-	left[93] = 5
-	left[94] = 5
-	left[95] = 5
-	left[96] = 6
-	left[97] = 6
-	left[98] = 6
-	left[99] = 6
-	left[100] = 6
-	left[101] = 6
-	left[102] = 6
-	left[103] = 6
-	left[104] = 6
-	left[105] = 6
-	left[106] = 6
-	left[107] = 6
-	left[108] = 6
-	left[109] = 6
-	left[110] = 6
-	left[111] = 6
-	left[112] = 7
-	left[113] = 7
-	left[114] = 7
-	left[115] = 7
-	left[116] = 7
-	left[117] = 7
-	left[118] = 7
-	left[119] = 7
-	left[120] = 7
-	left[121] = 7
-	left[122] = 7
-	left[123] = 7
-	left[124] = 7
-	left[125] = 7
-	left[126] = 7
-	left[127] = 7
-	left[128] = 8
-	left[129] = 8
-	left[130] = 8
-	left[131] = 8
-	left[132] = 8
-	left[133] = 8
-	left[134] = 8
-	left[135] = 8
-	left[136] = 8
-	left[137] = 8
-	left[138] = 8
-	left[139] = 8
-	left[140] = 8
-	left[141] = 8
-	left[142] = 8
-	left[143] = 8
-	left[144] = 9
-	left[145] = 9
-	left[146] = 9
-	left[147] = 9
-	left[148] = 9
-	left[149] = 9
-	left[150] = 9
-	left[151] = 9
-	left[152] = 9
-	left[153] = 9
-	left[154] = 9
-	left[155] = 9
-	left[156] = 9
-	left[157] = 9
-	left[158] = 9
-	left[159] = 9
-	left[160] = 10
-	left[161] = 10
-	left[162] = 10
-	left[163] = 10
-	left[164] = 10
-	left[165] = 10
-	left[166] = 10
-	left[167] = 10
-	left[168] = 10
-	left[169] = 10
-	left[170] = 10
-	left[171] = 10
-	left[172] = 10
-	left[173] = 10
-	left[174] = 10
-	left[175] = 10
-	left[176] = 11
-	left[177] = 11
-	left[178] = 11
-	left[179] = 11
-	left[180] = 11
-	left[181] = 11
-	left[182] = 11
-	left[183] = 11
-	left[184] = 11
-	left[185] = 11
-	left[186] = 11
-	left[187] = 11
-	left[188] = 11
-	left[189] = 11
-	left[190] = 11
-	left[191] = 11
-	left[192] = 12
-	left[193] = 12
-	left[194] = 12
-	left[195] = 12
-	left[196] = 12
-	left[197] = 12
-	left[198] = 12
-	left[199] = 12
-	left[200] = 12
-	left[201] = 12
-	left[202] = 12
-	left[203] = 12
-	left[204] = 12
-	left[205] = 12
-	left[206] = 12
-	left[207] = 12
-	left[208] = 13
-	left[209] = 13
-	left[210] = 13
-	left[211] = 13
-	left[212] = 13
-	left[213] = 13
-	left[214] = 13
-	left[215] = 13
-	left[216] = 13
-	left[217] = 13
-	left[218] = 13
-	left[219] = 13
-	left[220] = 13
-	left[221] = 13
-	left[222] = 13
-	left[223] = 13
-	left[224] = 14
-	left[225] = 14
-	left[226] = 14
-	left[227] = 14
-	left[228] = 14
-	left[229] = 14
-	left[230] = 14
-	left[231] = 14
-	left[232] = 14
-	left[233] = 14
-	left[234] = 14
-	left[235] = 14
-	left[236] = 14
-	left[237] = 14
-	left[238] = 14
-	left[239] = 14
-	left[240] = 15
-	left[241] = 15
-	left[242] = 15
-	left[243] = 15
-	left[244] = 15
-	left[245] = 15
-	left[246] = 15
-	left[247] = 15
-	left[248] = 15
-	left[249] = 15
-	left[250] = 15
-	left[251] = 15
-	left[252] = 15
-	left[253] = 15
-	left[254] = 15
-	left[255] = 15
-	right[256]
-	right[0] = 0
-	right[1] = 1
-	right[2] = 2
-	right[3] = 3
-	right[4] = 4
-	right[5] = 5
-	right[6] = 6
-	right[7] = 7
-	right[8] = 8
-	right[9] = 9
-	right[10] = 10
-	right[11] = 11
-	right[12] = 12
-	right[13] = 13
-	right[14] = 14
-	right[15] = 15
-	right[16] = 0
-	right[17] = 1
-	right[18] = 2
-	right[19] = 3
-	right[20] = 4
-	right[21] = 5
-	right[22] = 6
-	right[23] = 7
-	right[24] = 8
-	right[25] = 9
-	right[26] = 10
-	right[27] = 11
-	right[28] = 12
-	right[29] = 13
-	right[30] = 14
-	right[31] = 15
-	right[32] = 0
-	right[33] = 1
-	right[34] = 2
-	right[35] = 3
-	right[36] = 4
-	right[37] = 5
-	right[38] = 6
-	right[39] = 7
-	right[40] = 8
-	right[41] = 9
-	right[42] = 10
-	right[43] = 11
-	right[44] = 12
-	right[45] = 13
-	right[46] = 14
-	right[47] = 15
-	right[48] = 0
-	right[49] = 1
-	right[50] = 2
-	right[51] = 3
-	right[52] = 4
-	right[53] = 5
-	right[54] = 6
-	right[55] = 7
-	right[56] = 8
-	right[57] = 9
-	right[58] = 10
-	right[59] = 11
-	right[60] = 12
-	right[61] = 13
-	right[62] = 14
-	right[63] = 15
-	right[64] = 0
-	right[65] = 1
-	right[66] = 2
-	right[67] = 3
-	right[68] = 4
-	right[69] = 5
-	right[70] = 6
-	right[71] = 7
-	right[72] = 8
-	right[73] = 9
-	right[74] = 10
-	right[75] = 11
-	right[76] = 12
-	right[77] = 13
-	right[78] = 14
-	right[79] = 15
-	right[80] = 0
-	right[81] = 1
-	right[82] = 2
-	right[83] = 3
-	right[84] = 4
-	right[85] = 5
-	right[86] = 6
-	right[87] = 7
-	right[88] = 8
-	right[89] = 9
-	right[90] = 10
-	right[91] = 11
-	right[92] = 12
-	right[93] = 13
-	right[94] = 14
-	right[95] = 15
-	right[96] = 0
-	right[97] = 1
-	right[98] = 2
-	right[99] = 3
-	right[100] = 4
-	right[101] = 5
-	right[102] = 6
-	right[103] = 7
-	right[104] = 8
-	right[105] = 9
-	right[106] = 10
-	right[107] = 11
-	right[108] = 12
-	right[109] = 13
-	right[110] = 14
-	right[111] = 15
-	right[112] = 0
-	right[113] = 1
-	right[114] = 2
-	right[115] = 3
-	right[116] = 4
-	right[117] = 5
-	right[118] = 6
-	right[119] = 7
-	right[120] = 8
-	right[121] = 9
-	right[122] = 10
-	right[123] = 11
-	right[124] = 12
-	right[125] = 13
-	right[126] = 14
-	right[127] = 15
-	right[128] = 0
-	right[129] = 1
-	right[130] = 2
-	right[131] = 3
-	right[132] = 4
-	right[133] = 5
-	right[134] = 6
-	right[135] = 7
-	right[136] = 8
-	right[137] = 9
-	right[138] = 10
-	right[139] = 11
-	right[140] = 12
-	right[141] = 13
-	right[142] = 14
-	right[143] = 15
-	right[144] = 0
-	right[145] = 1
-	right[146] = 2
-	right[147] = 3
-	right[148] = 4
-	right[149] = 5
-	right[150] = 6
-	right[151] = 7
-	right[152] = 8
-	right[153] = 9
-	right[154] = 10
-	right[155] = 11
-	right[156] = 12
-	right[157] = 13
-	right[158] = 14
-	right[159] = 15
-	right[160] = 0
-	right[161] = 1
-	right[162] = 2
-	right[163] = 3
-	right[164] = 4
-	right[165] = 5
-	right[166] = 6
-	right[167] = 7
-	right[168] = 8
-	right[169] = 9
-	right[170] = 10
-	right[171] = 11
-	right[172] = 12
-	right[173] = 13
-	right[174] = 14
-	right[175] = 15
-	right[176] = 0
-	right[177] = 1
-	right[178] = 2
-	right[179] = 3
-	right[180] = 4
-	right[181] = 5
-	right[182] = 6
-	right[183] = 7
-	right[184] = 8
-	right[185] = 9
-	right[186] = 10
-	right[187] = 11
-	right[188] = 12
-	right[189] = 13
-	right[190] = 14
-	right[191] = 15
-	right[192] = 0
-	right[193] = 1
-	right[194] = 2
-	right[195] = 3
-	right[196] = 4
-	right[197] = 5
-	right[198] = 6
-	right[199] = 7
-	right[200] = 8
-	right[201] = 9
-	right[202] = 10
-	right[203] = 11
-	right[204] = 12
-	right[205] = 13
-	right[206] = 14
-	right[207] = 15
-	right[208] = 0
-	right[209] = 1
-	right[210] = 2
-	right[211] = 3
-	right[212] = 4
-	right[213] = 5
-	right[214] = 6
-	right[215] = 7
-	right[216] = 8
-	right[217] = 9
-	right[218] = 10
-	right[219] = 11
-	right[220] = 12
-	right[221] = 13
-	right[222] = 14
-	right[223] = 15
-	right[224] = 0
-	right[225] = 1
-	right[226] = 2
-	right[227] = 3
-	right[228] = 4
-	right[229] = 5
-	right[230] = 6
-	right[231] = 7
-	right[232] = 8
-	right[233] = 9
-	right[234] = 10
-	right[235] = 11
-	right[236] = 12
-	right[237] = 13
-	right[238] = 14
-	right[239] = 15
-	right[240] = 0
-	right[241] = 1
-	right[242] = 2
-	right[243] = 3
-	right[244] = 4
-	right[245] = 5
-	right[246] = 6
-	right[247] = 7
-	right[248] = 8
-	right[249] = 9
-	right[250] = 10
-	right[251] = 11
-	right[252] = 12
-	right[253] = 13
-	right[254] = 14
-	right[255] = 15
-	shift[32]
+	var shift[32]
 	shift[0] = 1
 	shift[1] = 2
 	shift[2] = 4
@@ -1318,8 +809,15 @@ start
 	shift[30] = 1073741824
 	shift[31] = -2147483648
 	
-	function And4(and4A, and4B)
+	function int32(val)
 	start
+		if(val <= 2147483647 && val >= -2147483648) then return int(val)
+		else if(val > 2147483647) then return int32(-4294967296 + val)
+		else if(val < -2147483648) then return int32(4294967296 - val)
+	end
+	
+	function And4(and4A, and4B)
+	start 
 		return SAND[and4A*16 + and4B]
 	end
 	
@@ -1335,97 +833,107 @@ start
 	
 	function And8(and8A, and8B)
 	start
-		return And4(left[and8A], left[and8B])*16 + And4(right[and8A], right[and8B])
+		return And4(int32(and8A/16), int32(and8B/16))*16 + And4(and8A%16, and8B%16)
 	end
 	
 	function Or8(or8A, or8B)
 	start
-		return Or4(left[or8A], left[or8B])*16 + Or4(right[or8A], right[or8B])
+		return Or4(int32(or8A/16), int32(or8B/16))*16 + Or4(or8A%16, or8B%16)
 	end
 	
 	function Xor8(xor8A, xor8B)
 	start
-		return Xor4(left[xor8A], left[xor8B])*16 + Xor4(right[xor8A], right[xor8B])
+		return Xor4(int32(xor8A/16), int32(xor8B/16))*16 + Xor4(xor8A%16, xor8B%16)
 	end
 	
 	function And16(and16A, and16B)
 	start
-		return And8(FLOOR(and16A/256), FLOOR(and16B/256))*256 + And8(and16A%256, and16B%256)
+		return And8(int32(and16A/256), int32(and16B/256))*256 + And8(and16A%256, and16B%256)
 	end 
 	
 	function Or16(or16A ,or16B)
 	start
-		return Or8(FLOOR(or16A/256), FLOOR(or16B/256))*256 + Or8(or16A%256, or16B%256)
+		return Or8(int32(or16A/256), int32(or16B/256))*256 + Or8(or16A%256, or16B%256)
 	end 
 	
 	function Xor16(xor16A, xor16B)
 	start
-		return Xor8(FLOOR(xor16A/256), FLOOR(xor16B/256))*256 + Xor8(xor16A%256, xor16B%256)
+		return Xor8(int32(xor16A/256), int32(xor16B/256))*256 + Xor8(xor16A%256, xor16B%256)
 	end 
 	
 	function Not32(not32A)
 	start
-		return -not32A - 1
+		return -int32(not32A) - 1
 	end
 	
 	function And32(and32A, and32B)
 	start
-		b1 = 0
-		b2 = 0
-		if(and32A < 0)then
+		var b1 = 0
+		var b2 = 0
+		if (and32A < 0) then
 		start
-			and32A = -2147483648 + and32A
+			and32A = int32(-2147483648 + and32A)
 			b1 = 128
 		end
-		if(and32B < 0)then
+		if (and32B < 0) then
 		start
-			and32B = -2147483648 + and32B
-			b1 = 128
+			and32B = int32(-2147483648 + and32B)
+			b2 = 128
 		end
-		return And16(b1 + FLOOR(and32A/65536), b2 + FLOOR(and32B/65536))*65536 + And16(and32A%65536, and32B%65536)
+		return int32(And16(b1 + int32(and32A/65536), b2 + int32(and32B/65536))*65536 + And16(and32A%65536, and32B%65536))
 	end
 	
 	function Or32(or32A, or32B)
 	start
-		b1 = 0
-		b2 = 0
-		if(or32A < 0)then
+		var b1 = 0
+		var b2 = 0
+		if (or32A < 0) then
 		start
-			or32A = -2147483648 + or32A
-			b1 = 128
+			or32A = int32(-2147483648 + or32A)
+			b1 = 32768
 		end
-		if(or32B < 0)then
+		if (or32B < 0) then
 		start
-			or32B = -2147483648 + or32B
-			b1 = 128
+			or32B = int32(-2147483648 + or32B)
+			b2 = 32768
 		end
-		return Or16(b1 + FLOOR(or32A/65536), b2 + FLOOR(or32B/65536))*65536 + Or16(or32A%65536, or32B%65536)
+		return int32(Or16(b1 + int32(or32A/65536), b2 + int32(or32B/65536))*65536 + Or16(or32A%65536, or32B%65536))
 	end
 	
 	function Xor32(xor32A, xor32B)
 	start
-		b1 = 0
-		b2 = 0
-		if(xor32A < 0)then
+		var b1 = 0
+		var b2 = 0
+		if (xor32A < 0) then
 		start
-			xor32A = -2147483648 + xor32A
-			b1 = 128
+			xor32A = int32(-2147483648 + xor32A)
+			b1 = 32768
 		end
-		if(xor32B < 0)then
+		if (xor32B < 0) then
 		start
-			xor32B = -2147483648 + xor32B
-			b1 = 128
+			xor32B = int32(-2147483648 + xor32B)
+			b2 = 32768
 		end
-		return Xor16(b1 + FLOOR(xor32A/65536), b2 + FLOOR(xor32B/65536))*65536 + Xor16(xor32A%65536, xor32B%65536)
+		return int32(Xor16(b1 + int32(xor32A/65536), b2 + int32(xor32B/65536))*65536 + Xor16(xor32A%65536, xor32B%65536))
 	end
 	
 	function LShift(toLShift, lshifts)
 	start
-		return toLShift*shift[lshifts]
+		return int32(toLShift*shift[lshifts])
 	end
 	
 	function RShift(toRShift, rshifts)
 	start
-		return FLOOR(toRShift/shift[rshifts])
+		return int32(toRShift/shift[rshifts])
+	end
+	
+	function LRot(toLRot, lrots)
+	start
+		return Or32(LShift(toLRot, lrots), RShift(toLRot, 32 - lrots))
+	end
+	
+	function RRot(toRRot, rrots)
+	start
+		return Or32(RShift(toRRot, rrots), LShift(toRRot, 32 - rrots))
 	end
 end
