@@ -1,0 +1,113 @@
+#**************************************************************
+*
+*	Physics Sample : Gravity by Alexis Munsayac
+*
+**************************************************************#
+start
+	var PI = 3.141592653689793
+	
+	# How many frames per second #
+	var frames = 64
+	# Size of the balls #
+	var ballSize = 16
+	# Balls velocity #
+	var ballVelocity = 522
+	# Direction of gravity #
+	var gravityX = 0
+	var gravityY = 9.806
+	# Amount of velocity maintained(by percent) #
+	var bounceFactor = 0.6
+	# Screen size #
+	var screenwidth = 800
+	var screenheight = 600
+	
+	var ballVecX[20]
+	var ballVecY[20]
+	var ballCurX[20]
+	var ballCurY[20]
+	
+	# This functions keep the coordinates within the map #
+	function boundX(tx)
+	start
+		if (tx < ballSize) then tx = ballSize
+		if (tx > screenwidth - ballSize) then tx = screenwidth - ballSize
+		return tx
+	end
+	function boundY(ty)
+	start
+		if (ty < ballSize) then ty = ballSize
+		if (ty > screenheight - ballSize) then ty = screenheight - ballSize
+	    return ty	
+	end
+	
+	function createBall(bid, bx, by)
+	start
+		var ang = random(PI*2)
+		ballCurX[bid] = bx
+		ballCurY[bid] = by
+		#* create vector *#
+		ballVecX[bid] = ballVelocity*cos(ang)
+		ballVecY[bid] = ballVelocity*sin(ang)
+	end 
+	
+	function drawBall(bbid)
+	start
+		setcolor(1, 1, 1, 0.4)
+		drawEllipse(ballCurX[bbid], ballCurY[bbid], ballSize, ballSize, 0)+
+		setcolor(1, 1, 1, 1)
+		drawEllipse(ballCurX[bbid], ballCurY[bbid], ballSize, ballSize, 0)
+	end
+	
+	function updateBall(ubid, fps)
+	start
+		#* add gravity *#
+		ballVecX[ubid] = ballVecX[ubid] + gravityX
+		ballVecY[ubid] = ballVecY[ubid] + gravityY
+		#* set the ball's new coordinates *#
+		var newx = ballCurX[ubid] + ballVecX[ubid]*fps
+		var newy = ballCurY[ubid] + ballVecY[ubid]*fps
+		#* check if the new coordinates are outside the map, if it is, deflect. *#
+		var bounced = 0
+		var r1 = newx < ballsize
+		var r2 = newx > screenwidth - ballSize
+		var r3 = newy < ballSize
+		var r4 = newy > screenheight - ballSize
+		if(r1 || r2) then 
+		start
+			ballVecX[ubid] = -ballVecX[ubid]
+			bounced = 1
+		end
+		if(r3 || r4) then
+		start
+			ballVecY[ubid] = -ballVecY[ubid]
+			bounced = 1
+		end
+		#* If it bounced, apply bounceFactor to vector *#
+		if(bounced) then
+		start
+			ballVecX[ubid] = ballVecX[ubid]*bounceFactor
+			ballVecY[ubid] = ballVecY[ubid]*bounceFactor
+		end
+		ballCurX[ubid] = boundX(newx)
+		ballCurY[ubid] = boundY(newy)
+	end
+	
+	for(var i = 0 to 19 step 1)
+	start
+		createBall(i, random(screenwidth), random(screenheight))
+	end
+	
+	screen(screenwidth, screenheight)
+	while(!windowclosed())
+	start
+		cls()
+		for(var i = 0 to 19 step 1)
+		start
+			updateBall(i, 1/frames)
+			drawBall(i)
+		end 
+		delay(1000/frames)
+		screenflip()
+	end
+	exit(0)
+end
