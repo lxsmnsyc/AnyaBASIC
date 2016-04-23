@@ -1,5 +1,5 @@
 start
-  var fps = 64
+  var frames = 64
   #include math.abs
   #include rect.abs
   #include map.abs
@@ -18,10 +18,10 @@ start
     end
     else if(state == 1) then
     start
-      updateMap(1/fps)
-      updateChunks(1/fps)
-      updatePlanets(1/fps)
-      updateAI(1/fps)
+      updateMap(1/frames)
+      updateChunks(1/frames)
+      updatePlanets(1/frames)
+      updateAI(1/frames)
       drawMap()
       drawChunks()
       drawPlanets()
