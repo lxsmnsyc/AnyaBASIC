@@ -1,0 +1,21 @@
+type Planet
+start
+  x = 0
+  y = 0
+  velocity = 0
+end
+
+function createPlanet()
+start
+
+end
+
+function updatePlanet(fps)
+start
+
+end
+
+function drawPlanet()
+start
+
+end
