@@ -1,0 +1,19 @@
+type Chunk
+start
+
+end
+
+function createChunk()
+start
+
+end
+
+function updateChuck(fps)
+start
+
+end
+
+function drawChunk()
+start
+
+end
