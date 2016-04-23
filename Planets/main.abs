@@ -1,0 +1,37 @@
+start
+  var fps = 64
+  #include math.abs
+  #include rect.abs
+  #include map.abs
+  #include chunks.abs
+  #include planets.abs
+  #include ai.abs
+  
+  screen(800, 600)
+  var state = 0
+  while(!windowclosed())
+  start
+    cls()
+    if(state == 0) then
+    start
+      drawMenu()
+    end
+    else if(state == 1) then
+    start
+      updateMap(1/fps)
+      updateChunks(1/fps)
+      updatePlanets(1/fps)
+      updateAI(1/fps)
+      drawMap()
+      drawChunks()
+      drawPlanets()
+    end
+    else if(state == 2) then
+    start
+      
+    end
+  
+    screenflip()
+    delay(1000/fps)
+  end
+end
