@@ -1,0 +1,41 @@
+var PLAYERNUMBER = 19
+Planet aiPlanets[19]
+
+function initAI()
+start
+  for(var i = 0 to PLAYENUMBER step 1)
+  start
+    aiPlanetes[i] = createPlanet()
+  end
+end
+
+function updateAI(fps)
+start
+  for(var i = 0 to PLAYENUMBER step 1)
+  start
+    var aip = aiPlanets[i]
+    var aix = aip.x
+    var aiy = aip.y
+    var ang = 0
+    Planet  pnearest
+    Chunk   cnearest
+    pnearest = getNearestPlanet(aip)
+    cnearest = getNearestChunk(aix, aiy)
+    
+    if(pnearest.mass > aip.mass) then
+    start
+      ang = atan2(aiy - pnearest.y, aix - pnearest.x)
+      aip.x = aip.x + aip.velocity*fps*cos(ang)
+      aip.y = aip.y + aip.velocity*fps*sin(ang)
+    end
+    else if(pnearest.mass/aip.mass <= ABSORB_FACTOR) then
+    start
+      ang = atan2(pnearest.y - aiy, pnearest.x - aix)
+      aip.x = aip.x + aip.velocity*fps*cos(ang)
+      aip.y = aip.y + aip.velocity*fps*sin(ang)
+    end
+    
+    ang = atan2(cnearest.y - aiy, cnearest.x - aix)
+    aip.x = aip.x + aip.velocity*fps*cos(ang)
+    aip.y = aip.y + aip.velocity*fps*sin(ang)
+end
