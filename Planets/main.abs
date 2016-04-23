@@ -32,6 +32,6 @@ start
     end
   
     screenflip()
-    delay(1000/fps)
+    delay(1000/frames)
   end
 end
