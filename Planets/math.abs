@@ -1,0 +1,41 @@
+type Math
+start
+  Pi = 3.141592653589793
+end
+
+function getRadius(area)
+start
+  return sqrt(area/Math.Pi)
+end
+
+function map2screenX(msx, msxoffset)
+start
+  return msx - msxoffset
+end
+
+function map2screenY(msy, msyoffset)
+start
+  return msy - msyoffset
+end
+
+function screen2mapX(smx, smxoffset)
+start
+  return smx + smxoffset
+end
+
+function screen2mapY(smy, smyoffset)
+start
+  return smy + smyoffset
+end
+
+var zoomFactor = 1.0
+var zoomInc = 0.1
+function zoomIn()
+start
+  zoomFactor = zoomFactor*(1 + zoomInc)
+end
+
+function zoomOut()
+start
+  zoomFactor = zoomFactor - zoomInc
+end
