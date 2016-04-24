@@ -1,0 +1,96 @@
+start
+  type Vec2D
+  start
+    x = 0
+    y = 0
+  end
+  
+  type Color
+  start
+    a = 0
+    r = 0
+    g = 0
+    b = 0
+  end
+  
+  Vec2D pos[8192]
+  Vec2D velocity[8192]
+  
+  Color start[8192]
+  Color end[8192]
+  
+  var duration[8192]
+  var curdur[8192]
+  
+  var particles = 0
+  
+  function particleGetVar(base, vari)
+  start
+    if(!vari) then return base
+    else return base - vari + random(vari*2)
+  end
+  
+  function linear(a, b, t)
+  start
+  
+  end
+  
+  function newParticle(nppos, npvel, npsc, npec, npsv, npev, npdur)
+  start
+    var i = particles
+    pos[i].x = nppos.x
+    pos[i].y = nppos.y
+    
+    velocity[i].x = npvel.x
+    velocity[i].y = npvel.y
+    
+    start[i].a = particleGetVar(npsc.a, npsv.a)/255
+    start[i].r = particleGetVar(npsc.r, npsv.r)/255
+    start[i].g = particleGetVar(npsc.g, npsv.g)/255
+    start[i].b = particleGetVar(npsc.b, npsv.b)/255
+    
+    end[i].a = particleGetVar(npec.a, npev.a)/255
+    end[i].r = particleGetVar(npec.r, npev.r)/255
+    end[i].g = particleGetVar(npec.g, npev.g)/255
+    end[i].b = particleGetVar(npec.b, npec.b)/255
+    
+    duration[i] = npdur
+    curdur[i] = 0
+    particles = particles + 1
+  end
+  
+  function destroyParticle(dctpart)
+  start
+    if(dctpart <= particles) then
+      var i = dctpart
+      var m = particles
+      pos[i].x = pos[m].x
+      pos[i].y = pos[m].y
+    
+      velocity[i].x = velocity[m].x
+      velocity[i].y = velocity[m].y
+    
+      start[i].a = start[m].a
+      start[i].r = start[m].r
+      start[i].g = start[m].g
+      start[i].b = start[m].b
+    
+      end[i].a = end[m].a
+      end[i].r = end[m].r
+      end[i].g = end[m].g
+      end[i].b = end[m].b
+    
+      duration[i] = duration[m]
+      curdur[i] = curdur[m]
+      particles = particles - 1
+    end
+  end
+end
+
+function drawParticle(dwpart)
+start
+  var i = dwpart
+  var pct = curdur[i]/duration[i]
+  setColor(linear(start[i].r, end[i].r, pct), linear(start[i].g, end[i].g, pct), linear(start[i].b, end[i].b, pct), linear(start[i].a, end[i].a, pct))
+  
+end
