@@ -1,0 +1,644 @@
+start
+	# SETTINGS #
+	var testblock = 0
+	var frames = 60
+	
+	var mapminx = 0
+	var mapminy = 0
+	var mapmaxx = 2048 
+	var mapmaxy = 2048
+	var tilesize = 128
+	
+	var doBlack = 0
+	
+	var cameramaxx = 1080
+	var cameramaxy = 768
+	var cameracenx = 540
+	var cameraceny = 384
+	var cameraminx = 0
+	var cameraminy = 0
+	var camerawidth = 1080
+	var cameraheight = 768
+	var screenwidth = 1080
+	var screenheight = 768
+	
+	var colormode = "monochrome"
+	
+	var maxchunks = 8192
+	var chunkradius = 4
+	var chunkmass = 50.265482457436691
+	var chunkperiod = 1
+	var chunkpop = 10
+	var initchunk = 256
+	
+	var maxplanets = 256
+	var planetvelocity = 512
+	var planetradius = 16
+	var planetmass = 804.247719318987069
+	var maxradius2zoom = 64
+	
+	var maxnovas = 8192
+	var novaradius = 32
+	var minradius = 10
+	var massloss = 10
+	var novaperiod = 30
+	var novapop = 1
+	
+	var aiplayers = 20
+	var fleeprio = 0.4
+	var atkprio = 0.4
+	var warndistance = 2.0
+	
+	var consumableratio = 0.8
+	 
+	  
+	#*************************************************************************************
+	*
+	*	Math functions
+	*
+	*************************************************************************************#
+	var Pi = 3.141592653589793
+
+	function getRadius(area)
+	start
+		return sqrt(area/Pi)
+	end
+	
+	function magnitude2(m2x, m2y)
+	start
+		return m2x*m2x + m2y*m2y
+	end 
+	
+	function magnitude(mx, my)
+	start
+		return sqrt(magnitude2(mx, my))
+	end
+	 
+	  
+	#*************************************************************************************
+	*
+	*	Map and Camera functions
+	*
+	*************************************************************************************#
+	function getRandomX()
+	start
+		return random(mapmaxx)
+	end 
+	
+	function getRandomY()
+	start
+		return random(mapmaxy)
+	end 
+	
+	function boundX(bx)
+	start
+		if(bx < mapminx) then bx = mapminx
+		if(bx > mapmaxx) then bx = mapmaxx
+		return bx
+	end
+	
+	function boundy(by)
+	start
+		if(by < mapminy) then by = mapminy
+		if(by > mapmaxy) then by = mapmaxy
+		return by
+	end
+	
+	function updateCamera()
+	start
+		cameraminx = cameracenx - camerawidth/2
+		cameramaxx = cameracenx + camerawidth/2
+		cameraminy = cameraceny - cameraheight/2
+		cameramaxy = cameraceny + cameraheight/2
+	end
+	
+	function moveCamera(mcx, mcy)
+	start
+		cameracenx = mcx
+		cameraceny = mcy
+		updateCamera()
+	end 
+	
+	function isVisible(ivx, ivy)
+	start
+		return ((ivx < cameramaxx) && (ivx > cameraminx)) && ((ivy < cameramaxy) && (ivy > cameraminy))
+	end
+	
+	var zoomfactor = 1.0
+	
+	function zoom(zfactor)
+	start
+		camerawidth = screenwidth*zfactor
+		cameraheight = screenheight*zfactor
+		updateCamera()
+		zoomfactor = zfactor
+	end
+	
+	function map2screenX(msx)
+	start
+		return (msx - cameraminx)/zoomFactor
+	end
+
+	function map2screenY(msy)
+	start
+		return (msy - cameraminy)/zoomFactor
+	end
+
+	function screen2mapX(smx)
+	start
+		return (smx*zoomFactor) + cameraminx
+	end
+
+	function screen2mapY(smy)
+	start
+		return (smy*zoomFactor) + cameraminy
+	end
+	
+	function ColorSet(csr, csg, csb, csa)
+	start
+		var tempval = 255
+		csr = csr*255
+		csg = csg*255
+		csb = csb*255
+		if("mono" == colormode) then
+		start
+			tempval = 0.2125*csr + 0.7154*csg + 0.0721*csb
+			csr = tempval
+			csg = tempval
+			csb = tempval
+		end
+		else if ("negative" == colormode) then 
+		start
+			csr = 255 - csr
+			csg = 255 - csg
+			csb = 255 - csb 
+		end 
+		
+		setColor(csr/255, csg/255, csb/255, csa)
+	end
+	
+	function drawMap()
+	start
+		cls(0, 0, 0, 0)
+		ColorSet(0.5, 0.5, 0.5, 0.75)
+		var dmx1 = 0
+		var dmx2 = 0
+		var dmy1 = 0
+		var dmy2 = 0
+		for(var dmx = mapminx to mapmaxx step tilesize)
+		start
+			dmx1 = map2screenX(dmx)
+			dmy1 = map2screenY(mapminy)
+			dmx2 = map2screenX(dmx)
+			dmy2 = map2screenY(mapmaxy)
+			if((cameraminx < dmx) && (cameramaxx > dmx)) then drawLine(dmx1, dmy1, dmx2, dmy2)
+		end
+		for(var dmy = mapminy to mapmaxy step tilesize)
+		start
+			dmx1 = map2screenX(mapminx)
+			dmy1 = map2screenY(dmy)
+			dmx2 = map2screenX(mapmaxx)
+			dmy2 = map2screenY(dmy)
+			if((cameraminy < dmy) && (cameramaxy > dmy)) then drawLine(dmx1, dmy1, dmx2, dmy2)
+		end
+	end
+	
+	function drawCircle(dcx, dcy, dcrd, dcr, dcg, dcb)
+	start
+		dcx = map2screenX(dcx)
+		dcy = map2screenY(dcy)
+		ColorSet(dcr, dcg, dcb, 0.75)
+		drawEllipse(dcx, dcy, dcrd, dcrd, 0)+
+		ColorSet(dcr, dcg, dcb, 1)
+		drawEllipse(dcx, dcy, dcrd*0.8, dcrd*0.8, 0)+
+	end
+	 
+	  
+	#*************************************************************************************
+	*
+	*	chunks
+	*
+	*************************************************************************************#
+	type Chunk
+	start
+		x = 0
+		y = 0
+		
+		r = 0
+		g = 0
+		b = 0
+	end
+	
+	Chunk chunks[maxchunks]
+	
+	var cn[maxchunks]
+	var cp[maxchunks]
+	
+	var cr[maxchunks]
+	
+	function initChunkAlloc()
+	start
+		cr[maxchunks - 1] = 0
+		for(var ica = 0 to maxchunks - 2 step 1)
+		start
+			cr[ica] = ica + 1
+		end
+	end
+	
+	function createChunk()
+	start
+		var chead = cr[0]
+		cr[0] = cr[chead]
+		
+		chunks[chead].x = getRandomX()
+		chunks[chead].y = getRandomY()
+		chunks[chead].r = 0.25 + random(0.75)
+		chunks[chead].g = 0.25 + random(0.75)
+		chunks[chead].b = 0.25 + random(0.75)
+		
+		cn[chead] = 0
+		cp[chead] = cp[0]
+		cn[cp[0]] = chead
+		cp[0] = chead
+	end
+	
+	function drawChunks()
+	start
+		var dc = cn[0]
+		while(dc)
+		start
+			if(isVisible(chunks[dc].x, chunks[dc].y))then drawCircle(chunks[dc].x, chunks[dc].y, chunkradius, chunks[dc].r, chunks[dc].g, chunks[dc].b)
+			dc = cn[dc]
+		end
+	end
+	
+	var ctimer = 0
+	
+	function updateChunk(ucfps)
+	start
+		ctimer = ctimer + ucfps
+		if(ctimer > chunkperiod) then
+		start
+			ctimer = 0
+			repeat(1 to chunkpop step 1) createChunk()
+		end 
+	end 
+	
+	function ChunkInit()
+	start
+		repeat(1 to initchunk step 1) createChunk() 
+	end
+	
+	function destroyChunk(dcc)
+	start
+		cr[dcc] = cr[0]
+		cr[0] = dcc
+		
+		cn[cp[dcc]] = cn[dcc]
+		cp[cn[dcc]] = cp[dcc]
+	end
+	#*************************************************************************************
+	*
+	*	novas
+	*
+	*************************************************************************************#
+	type nova
+	start
+		x = 0
+		y = 0
+		r = 0
+		g = 0
+		b = 0
+	end
+	
+	nova novas[maxnovas]
+	
+	var nn[maxnovas]
+	var np[maxnovas]
+	
+	var nr[maxnovas]
+	
+	function initnovaAlloc()
+	start
+		nr[maxnovas - 1] = 0
+		for(var ina = 0 to maxnovas - 2 step 1)
+		start
+			nr[ina] = ina + 1
+		end
+	end
+	
+	function createnova()
+	start
+		var nhead = nr[0]
+		nr[0] = nr[nhead]
+		
+		novas[nhead].x = getRandomX()
+		novas[nhead].y = getRandomY()
+		novas[nhead].r = 0.25 + random(0.75)
+		novas[nhead].g = 0.25 + random(0.75)
+		novas[nhead].b = 0.25 + random(0.75)
+		
+		nn[nhead] = 0
+		np[nhead] = np[0]
+		nn[np[0]] = nhead
+		np[0] = nhead
+	end
+	
+	function drawNovas()
+	start
+		var dn = nn[0]
+		while(dn)
+		start
+			if(isVisible(novas[dn].x, novas[dn].y))then 
+			start 
+				drawCircle(novas[dn].x, novas[dn].y, novaradius, novas[dn].r, novas[dn].g, novas[dn].b)
+				drawCircle(novas[dn].x, novas[dn].y, novaradius*0.5, 1 - novas[dn].r, 1 - novas[dn].g, 1 - novas[dn].b)
+			end 
+			dn = nn[dn]
+		end
+	end
+	
+	var ntimer = 0
+	
+	function updatenova(unfps)
+	start
+		ntimer = ntimer + unfps
+		if(ntimer > novaperiod) then
+		start
+			ntimer = 0
+			repeat(1 to novapop step 1) createnova()
+		end 
+	end 
+	
+	function destroyNova(dnn)
+	start
+		nr[dnn] = nr[0]
+		nr[0] = dnn
+		
+		nn[np[dnn]] = nn[dnn]
+		np[nn[dnn]] = np[dnn]
+		
+		novas[dnn].x = 2147483647
+		
+	end
+	
+	#*************************************************************************************
+	*
+	*	Planets
+	*
+	*************************************************************************************#
+	type Planet
+	start
+		x = 0 
+		y = 0
+		spd = planetvelocity
+		face = 0
+		user = 0 
+		radius = planetradius
+		mass = planetmass
+		
+		r = 0
+		g = 0
+		b = 0
+	end
+	
+	Planet planets[maxplanets]
+	var psize = 0
+	var pn[maxplanets]
+	var pp[maxplanets]
+	
+	function createPlanet(comp)
+	start
+		var phead = psize + 1
+		
+		planets[phead].x = getRandomX()
+		planets[phead].y = getRandomY()
+		
+		planets[phead].face = random(Pi*2)
+		
+		planets[phead].r = 0.25 + random(0.75)
+		planets[phead].g = 0.25 + random(0.75)
+		planets[phead].b = 0.25 + random(0.75)
+		
+		planets[phead].user = comp
+		
+		pn[phead] = 0
+		pp[phead] = pp[0]
+		pn[pp[0]] = phead
+		pp[0] = phead
+		
+		psize = phead
+	end
+	
+	function drawPlanets()
+	start
+		var ang = 0
+		var dp = pn[0]
+		while(dp)
+		start
+			ang = atan2(cameraceny - planets[dp].y,cameracenx - planets[dp].x)
+			if(isVisible(planets[dp].x + planets[dp].radius*cos(ang), planets[dp].y + planets[dp].radius*sin(ang)))then 
+			start 
+				drawCircle(planets[dp].x, planets[dp].y, planets[dp].radius/zoomFactor, planets[dp].r, planets[dp].g, planets[dp].b)
+			end 
+			dp = pn[dp]
+		end
+	end 
+	
+	function respawnPlanet(rpp)
+	start
+		planets[rpp].x = getRandomX()
+		planets[rpp].y = getRandomY()
+		
+		planets[rpp].face = random(Pi*2)
+		
+		planets[rpp].r = 0.25 + random(0.75)
+		planets[rpp].g = 0.25 + random(0.75)
+		planets[rpp].b = 0.25 + random(0.75)
+		
+		planets[rpp].mass = planetmass
+		planets[rpp].radius = planetradius
+	end
+	
+	function canEat(cepa, cepb)
+	start
+		return planets[cepa].mass*consumableratio >= planets[cepb].mass
+	end 
+	
+	function updatePlanet(upfps)
+	start
+		var up = pn[0]
+		var tx = 0
+		var ty = 0
+		while(up)
+		start
+			# Iterate chunks #
+			var upc = cn[0]
+			var upval = 0
+			var upang = 0
+			var nearchunk = 0
+			var ncr = 21474836747
+			
+			while(upc)
+			start
+				tx = chunks[upc].x - planets[up].x
+				ty = chunks[upc].y - planets[up].y
+				upval = magnitude(tx, ty)
+				if(upval < planets[up].radius) then
+				start
+					planets[up].mass = planets[up].mass + chunkmass
+					planets[up].radius = getRadius(planets[up].mass)
+					destroyChunk(upc)
+				end
+				else if(upval < ncr) then
+				start
+					ncr = upval
+					nearchunk = upc
+					upang = atan2(ty, tx)
+				end
+				upc = cn[upc]
+			end
+			 
+			# Iterate Novas#
+			var upn = nn[0]
+			while(upn)
+			start 
+				tx = novas[upn].x - planets[up].x
+				ty = novas[upn].y - planets[up].y
+				upval = magnitude(tx, ty)
+				if(upval < planets[up].radius) then
+				start
+					planets[up].mass = planets[up].mass*(0.8)
+					planets[up].radius = getRadius(planets[up].mass)
+					destroyNova(upn)
+				end
+				upn = nn[upn]
+			end
+			
+			# Iterate Planets #
+			var fprio = 1
+			
+			var nearPred = 0
+			var npdd = 2147483647
+			var npda = 0
+			var fx = 0
+			var fy = 0
+			
+			var nearPrey = 0
+			var nppd = 2147483647
+			var nppa = 0
+			var ax = 0
+			var ay = 0
+			
+			var upp = pn[0]
+			while(upp)
+			start
+				if(upp != up) then 
+				start
+					tx = planets[upp].x - planets[up].x
+					ty = planets[upp].y - planets[up].y
+					upval = magnitude(tx, ty)
+					if(canEat(up, upp)) then 
+					start
+						if(upval < planets[up].radius) then
+						start
+							planets[up].mass = planets[up].mass + planets[upp].mass
+							planets[up].radius = getRadius(planets[up].mass)
+							respawnPlanet(upp)
+						end
+						else if(upval < nppd) then
+						start
+							nppd = upval
+							nearPrey = upp
+							ax = ax + tx
+							ay = ay + ty
+						end
+					end 
+					else if(canEat(upp, up)) then
+					start
+						if(upval < npdd && upval < planets[upp].radius*warndistance) then
+						start
+							npdd = upval
+							nearPred = upp
+							fx = fx - tx
+							fy = fy - ty
+						end
+					end
+				end
+				upp = pn[upp]
+			end 
+			
+			npda = atan2(fy, fx)
+			nppa = atan2(ay, ax)
+			
+			if (nearPred) then
+			start
+				fprio = fprio - fleeprio
+			end
+			if(nearPrey) then
+			start
+				fprio = fprio - atkprio
+			end
+			if(planets[up].user) then
+			start
+				if(nearchunk) then
+				start
+					planets[up].x = planets[up].x + planets[up].spd*cos(upang)*fprio*upfps 
+					planets[up].y = planets[up].y + planets[up].spd*sin(upang)*fprio*upfps
+				end
+				if(nearPred) then
+				start
+					planets[up].x = planets[up].x + planets[up].spd*cos(npda)*atkprio*upfps
+					planets[up].y = planets[up].y + planets[up].spd*sin(npda)*atkprio*upfps
+				end
+				if(nearPrey) then
+				start
+					planets[up].x = planets[up].x + planets[up].spd*cos(nppa)*fleeprio*upfps
+					planets[up].y = planets[up].y + planets[up].spd*sin(nppa)*fleeprio*upfps
+				end
+			end 
+			else
+			start
+				nppa = atan2(screen2mapY(mouseY()) - planets[up].y, screen2mapX(mouseX()) - planets[up].x)
+				planets[up].x = planets[up].x + planets[up].spd*cos(nppa)*upfps
+				planets[up].y = planets[up].y + planets[up].spd*sin(nppa)*upfps
+				moveCamera(planets[up].x, planets[up].y)
+				if(planets[up].radius > maxradius2zoom) then
+				start
+					zoom(planets[up].radius/maxradius2zoom)
+				end
+			end
+			
+			planets[up].x = boundX(planets[up].x + planets[up].radius) - planets[up].radius
+			planets[up].y = boundy(planets[up].y + planets[up].radius) - planets[up].radius
+			planets[up].x = boundX(planets[up].x - planets[up].radius) + planets[up].radius
+			planets[up].y = boundy(planets[up].y - planets[up].radius) + planets[up].radius
+			up = pn[up]
+		end 
+	end
+	
+	function initPlanet()
+	start
+		createPlanet(0)
+		repeat(1 to aiplayers step 1) createPlanet(1)
+	end
+	
+	screen(screenwidth, screenheight)
+	InitPlanet()
+	initChunkAlloc()
+	initNovaAlloc()
+	ChunkInit()
+	while(!windowclosed())
+	start
+		updateChunk(1/frames)
+		updateNova(1/frames)
+		updatePlanet(1/frames) 
+		drawMap()
+		drawChunks()
+		drawNovas()
+		drawPlanets()
+		screenflip()
+		delay(1000/frames)
+	end
+	exit(0)
+end
