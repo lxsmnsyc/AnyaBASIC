@@ -1,38 +1,36 @@
 start
 	# SETTINGS #
 	var testblock = 0
-	var frames = 60
+	var frames = 64
 	
 	var mapminx = 0
 	var mapminy = 0
-	var mapmaxx = 2048 
-	var mapmaxy = 2048
+	var mapmaxx = 2048
+	var mapmaxy = 2048 
 	var tilesize = 128
 	
 	var doBlack = 0
 	
-	var cameramaxx = 1080
-	var cameramaxy = 768
-	var cameracenx = 540
-	var cameraceny = 384
+	var cameramaxx = 800
+	var cameramaxy = 600
+	var cameracenx = 400
+	var cameraceny = 300
 	var cameraminx = 0
 	var cameraminy = 0
-	var camerawidth = 1080
-	var cameraheight = 768
-	var screenwidth = 1080
-	var screenheight = 768
+	var camerawidth = 800
+	var cameraheight = 600
+	var screenwidth = 800
+	var screenheight = 600
 	
-	var colormode = "monochrome"
+	var colormode = "negative"
 	
 	var maxchunks = 8192
 	var chunkradius = 4
 	var chunkmass = 50.265482457436691
-	var chunkperiod = 1
-	var chunkpop = 10
-	var initchunk = 256
+	var chunkpop = 512
 	
-	var maxplanets = 256
-	var planetvelocity = 512
+	var maxplanets = 128
+	var planetvelocity = 1024
 	var planetradius = 16
 	var planetmass = 804.247719318987069
 	var maxradius2zoom = 64
@@ -41,12 +39,9 @@ start
 	var novaradius = 32
 	var minradius = 10
 	var massloss = 10
-	var novaperiod = 30
-	var novapop = 1
+	var novapop = 5
 	
-	var aiplayers = 20
-	var fleeprio = 0.4
-	var atkprio = 0.4
+	var aiplayers = 24
 	var warndistance = 2.0
 	
 	var consumableratio = 0.8
@@ -272,21 +267,9 @@ start
 		end
 	end
 	
-	var ctimer = 0
-	
-	function updateChunk(ucfps)
-	start
-		ctimer = ctimer + ucfps
-		if(ctimer > chunkperiod) then
-		start
-			ctimer = 0
-			repeat(1 to chunkpop step 1) createChunk()
-		end 
-	end 
-	
 	function ChunkInit()
 	start
-		repeat(1 to initchunk step 1) createChunk() 
+		repeat(1 to chunkpop step 1) createChunk() 
 	end
 	
 	function destroyChunk(dcc)
@@ -351,24 +334,12 @@ start
 		start
 			if(isVisible(novas[dn].x, novas[dn].y))then 
 			start 
-				drawCircle(novas[dn].x, novas[dn].y, novaradius, novas[dn].r, novas[dn].g, novas[dn].b)
-				drawCircle(novas[dn].x, novas[dn].y, novaradius*0.5, 1 - novas[dn].r, 1 - novas[dn].g, 1 - novas[dn].b)
+				drawCircle(novas[dn].x, novas[dn].y, novaradius/zoomFactor, novas[dn].r, novas[dn].g, novas[dn].b)
+				drawCircle(novas[dn].x, novas[dn].y, novaradius*0.5/zoomFactor, 1 - novas[dn].r, 1 - novas[dn].g, 1 - novas[dn].b)
 			end 
 			dn = nn[dn]
 		end
 	end
-	
-	var ntimer = 0
-	
-	function updatenova(unfps)
-	start
-		ntimer = ntimer + unfps
-		if(ntimer > novaperiod) then
-		start
-			ntimer = 0
-			repeat(1 to novapop step 1) createnova()
-		end 
-	end 
 	
 	function destroyNova(dnn)
 	start
@@ -379,7 +350,11 @@ start
 		np[nn[dnn]] = np[dnn]
 		
 		novas[dnn].x = 2147483647
-		
+	end
+	
+	function InitNova()
+	start
+		repeat(1 to novapop step 1) createNova() 
 	end
 	
 	#*************************************************************************************
@@ -458,6 +433,8 @@ start
 		
 		planets[rpp].mass = planetmass
 		planets[rpp].radius = planetradius
+		
+		planets[rpp].spd = planetvelocity
 	end
 	
 	function canEat(cepa, cepb)
@@ -483,12 +460,14 @@ start
 			start
 				tx = chunks[upc].x - planets[up].x
 				ty = chunks[upc].y - planets[up].y
-				upval = magnitude(tx, ty)
-				if(upval < planets[up].radius) then
+				upval = magnitude2(tx, ty)
+				if(upval < planets[up].radius*planets[up].radius) then
 				start
 					planets[up].mass = planets[up].mass + chunkmass
 					planets[up].radius = getRadius(planets[up].mass)
+					planets[up].spd = planetvelocity*(planetradius/planets[up].radius)
 					destroyChunk(upc)
+					createChunk()
 				end
 				else if(upval < ncr) then
 				start
@@ -505,12 +484,14 @@ start
 			start 
 				tx = novas[upn].x - planets[up].x
 				ty = novas[upn].y - planets[up].y
-				upval = magnitude(tx, ty)
-				if(upval < planets[up].radius) then
+				upval = magnitude2(tx, ty)
+				if(upval < planets[up].radius*planets[up].radius) then
 				start
 					planets[up].mass = planets[up].mass*(0.8)
 					planets[up].radius = getRadius(planets[up].mass)
+					planets[up].spd = planetvelocity*(planetradius/planets[up].radius)
 					destroyNova(upn)
+					createNova()
 				end
 				upn = nn[upn]
 			end
@@ -537,65 +518,47 @@ start
 				start
 					tx = planets[upp].x - planets[up].x
 					ty = planets[upp].y - planets[up].y
-					upval = magnitude(tx, ty)
+					upval = magnitude2(tx, ty)
 					if(canEat(up, upp)) then 
 					start
-						if(upval < planets[up].radius) then
+						if(upval < planets[up].radius*planets[up].radius) then
 						start
 							planets[up].mass = planets[up].mass + planets[upp].mass
 							planets[up].radius = getRadius(planets[up].mass)
+							planets[up].spd = planetvelocity*(planetradius/planets[up].radius) 
 							respawnPlanet(upp)
 						end
 						else if(upval < nppd) then
 						start
 							nppd = upval
 							nearPrey = upp
-							ax = ax + tx
-							ay = ay + ty
+							nppa = atan2(ty, tx)
+							ax = ax + cos(nppa)
+							ay = ay + sin(nppa)
 						end
 					end 
 					else if(canEat(upp, up)) then
 					start
-						if(upval < npdd && upval < planets[upp].radius*warndistance) then
+						if((upval < npdd) && (upval < (planets[upp].radius*planets[upp].radius*warndistance))) then
 						start
 							npdd = upval
 							nearPred = upp
-							fx = fx - tx
-							fy = fy - ty
+							npda = atan2(ty, tx) + Pi
+							fx = fx + cos(npda)
+							fy = fy + sin(npda)
 						end
 					end
 				end
 				upp = pn[upp]
 			end 
 			
-			npda = atan2(fy, fx)
-			nppa = atan2(ay, ax)
-			
-			if (nearPred) then
-			start
-				fprio = fprio - fleeprio
-			end
-			if(nearPrey) then
-			start
-				fprio = fprio - atkprio
-			end
+			tx = fx + ax + cos(upang)
+			ty = fy + ay + sin(upang)
+			var nang = atan2(ty, tx)
 			if(planets[up].user) then
 			start
-				if(nearchunk) then
-				start
-					planets[up].x = planets[up].x + planets[up].spd*cos(upang)*fprio*upfps 
-					planets[up].y = planets[up].y + planets[up].spd*sin(upang)*fprio*upfps
-				end
-				if(nearPred) then
-				start
-					planets[up].x = planets[up].x + planets[up].spd*cos(npda)*atkprio*upfps
-					planets[up].y = planets[up].y + planets[up].spd*sin(npda)*atkprio*upfps
-				end
-				if(nearPrey) then
-				start
-					planets[up].x = planets[up].x + planets[up].spd*cos(nppa)*fleeprio*upfps
-					planets[up].y = planets[up].y + planets[up].spd*sin(nppa)*fleeprio*upfps
-				end
+				planets[up].x = planets[up].x + planets[up].spd*cos(nang)*upfps 
+				planets[up].y = planets[up].y + planets[up].spd*sin(nang)*upfps
 			end 
 			else
 			start
@@ -628,10 +591,9 @@ start
 	initChunkAlloc()
 	initNovaAlloc()
 	ChunkInit()
+	InitNova()
 	while(!windowclosed())
 	start
-		updateChunk(1/frames)
-		updateNova(1/frames)
 		updatePlanet(1/frames) 
 		drawMap()
 		drawChunks()
