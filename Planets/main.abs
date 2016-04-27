@@ -27,7 +27,7 @@ start
 	var maxchunks = 8192
 	var chunkradius = 4
 	var chunkmass = 50.265482457436691
-	var chunkpop = 512
+	var chunkpop = 128
 	
 	var maxplanets = 128
 	var planetvelocity = 1024
