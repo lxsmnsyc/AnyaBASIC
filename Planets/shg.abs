@@ -2,7 +2,7 @@
   var gridh = 128
   var gridr = 64
   var grids = 4096
-  var gridmap[128][128]
+  var gridmap[gridr][64]
   var gridcn[grids][maxchunks]
   var gridcp[grids][maxchunks]
   var gridnn[grids][maxnovas]
