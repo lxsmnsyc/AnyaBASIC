@@ -1,0 +1,83 @@
+  var gridw = 128
+  var gridh = 128
+  var gridr = 64
+  var grids = 4096
+  var gridmap[128][128]
+  var gridcn[grids][maxchunks]
+  var gridcp[grids][maxchunks]
+  var gridnn[grids][maxnovas]
+  var gridnp[grids][maxnovas]
+  var gridpn[grids][maxplanets]
+  var gridpp[grids][maxplanets]
+  var cgrid[maxchunks]
+  var ngrid[maxnovas]
+  var pgrid[maxplanets]
+  
+  function gridnormx(gnx)
+  start
+    return int(gnx/gridw)
+  end
+  
+  function gridnormy(gny)
+  start
+    return int(gny/gridh)
+  end
+  
+  function createGrid(cgx, cgy)
+  start
+    cgx = gridnormx(cgx)
+    cgy = gridnormy(cgy)
+    var id = cgx*gridc + cgy
+    gridmap[cgx][cgy] = id
+  end
+  
+  function getGrid(ggx, ggy)
+  start
+    return gridmap[gridnormx(ggx)][gridnormy(ggy)]
+  end
+  
+  function GridAddChunk(gacg, gacc)
+  start
+    gridcn[gacg][gacc] = 0
+    gridcp[gacg][gacc] = gridcp[gacg][0]
+    gridcn[gacg][gridcp[gacg][0]] = gacc
+    gridcp[0] = gacc
+    
+    cgrid[gacc] = gacg
+  end
+  
+  function GridRemoveChunk(grcg, grcc)
+  start
+    gridcn[grcg][gridcp[grcg][grcc]] = gridcn[grcg][grcc]
+    gridcp[grcg][gridcn[grcg][grcc]] = gridcp[grcg][grcc]
+    cgrid[grcc] = 0
+  end
+  
+  function GridAddChunk(gacg, gacc)
+  start
+    gridcn[gacg][gacc] = 0
+    gridcp[gacg][gacc] = gridcp[gacg][0]
+    gridcn[gacg][gridcp[gacg][0]] = gacc
+    gridcp[0] = gacc
+  end
+  
+  function GridRemoveChunk(grcg, grcc)
+  start
+    gridcn[grcg][gridcp[grcg][grcc]] = gridcn[grcg][grcc]
+    gridcp[grcg][gridcn[grcg][grcc]] = gridcp[grcg][grcc]
+  end
+  
+  function GridAddChunk(gacg, gacc)
+  start
+    gridcn[gacg][gacc] = 0
+    gridcp[gacg][gacc] = gridcp[gacg][0]
+    gridcn[gacg][gridcp[gacg][0]] = gacc
+    gridcp[0] = gacc
+  end
+  
+  function GridRemoveChunk(grcg, grcc)
+  start
+    gridcn[grcg][gridcp[grcg][grcc]] = gridcn[grcg][grcc]
+    gridcp[grcg][gridcn[grcg][grcc]] = gridcp[grcg][grcc]
+  end
+  
