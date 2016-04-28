@@ -53,31 +53,35 @@
     cgrid[grcc] = 0
   end
   
-  function GridAddChunk(gacg, gacc)
+  function GridAddNova(gang, gann)
   start
-    gridcn[gacg][gacc] = 0
-    gridcp[gacg][gacc] = gridcp[gacg][0]
-    gridcn[gacg][gridcp[gacg][0]] = gacc
-    gridcp[0] = gacc
+    gridnn[gang][gann] = 0
+    gridnp[gang][gann] = gridnp[gang][0]
+    gridnn[gang][gridnp[gang][0]] = gann
+    gridnp[0] = gann
+    
+    ngrid[gann] = gang
   end
   
-  function GridRemoveChunk(grcg, grcc)
+  function GridRemoveNova(grng, grnn)
   start
-    gridcn[grcg][gridcp[grcg][grcc]] = gridcn[grcg][grcc]
-    gridcp[grcg][gridcn[grcg][grcc]] = gridcp[grcg][grcc]
+    gridnn[grng][gridnp[grng][grnn]] = gridnn[grng][grnn]
+    gridnp[grng][gridnn[grng][grnn]] = gridnp[grng][grnn]
   end
   
-  function GridAddChunk(gacg, gacc)
+  function GridAddPlanet(gapg, gapp)
   start
-    gridcn[gacg][gacc] = 0
-    gridcp[gacg][gacc] = gridcp[gacg][0]
-    gridcn[gacg][gridcp[gacg][0]] = gacc
-    gridcp[0] = gacc
+    gridpn[gapg][gapp] = 0
+    gridpp[gapg][gapp] = gridpp[gapg][0]
+    gridpn[gapg][gridpp[gapg][0]] = gapp
+    gridpp[0] = gapp
+    
+    pgrid[gapp] = gapg
   end
   
-  function GridRemoveChunk(grcg, grcc)
+  function GridRemovePlanet(grpg, grpp)
   start
-    gridcn[grcg][gridcp[grcg][grcc]] = gridcn[grcg][grcc]
-    gridcp[grcg][gridcn[grcg][grcc]] = gridcp[grcg][grcc]
+    gridpn[grpg][gridpp[grpg][grpp]] = gridpn[grpg][grpp]
+    gridpp[grpg][gridpn[grpg][grpp]] = gridpp[grpg][grpp]
   end
   
