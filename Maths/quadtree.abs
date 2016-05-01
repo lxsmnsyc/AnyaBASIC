@@ -1,0 +1,34 @@
+var maxQuadtrees = 8192
+var qtCapacity = 4
+
+var qtx[maxQuadtrees]
+var qty[maxQuadtrees]
+var qtw[maxQuadtrees]
+var qth[maxQuadtrees]
+
+var qtne[maxQuadtrees]
+var qtnw[maxQuadtrees]
+var qtse[maxQuadtrees]
+var qtsw[maxQuadtrees]
+
+var qtpt[maxQuadtrees][qtCapacity]
+
+var qtrec[maxQuadtrees]
+qtrec[0] = 1
+
+function newQuadtree(x, y, width, height)
+start
+    #
+    Allocate instance
+    #
+    var qtnode = qtrec[0]
+    if(qtrec[qtnode] == 0) then qtrec[0] = qtnode + 1
+    else qtrec[0] = qtrec[qtnode]
+    
+    qtx[qtnode] = x
+    qty[qtnode] = y
+    qtw[qtnode] = width
+    qth[qtnode] = height
+    
+    return qtnode
+end
