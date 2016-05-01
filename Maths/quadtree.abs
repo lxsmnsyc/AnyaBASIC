@@ -6,6 +6,7 @@ var qty[maxQuadtrees]
 var qtw[maxQuadtrees]
 var qth[maxQuadtrees]
 
+var qthc[maxQuadtrees]
 var qtne[maxQuadtrees]
 var qtnw[maxQuadtrees]
 var qtse[maxQuadtrees]
@@ -31,4 +32,45 @@ start
     qth[qtnode] = height
     
     return qtnode
+end
+
+function subdivideQuadtreeNode(sqtn)
+start
+    var hw = qtw[sqtn]/2
+    var hh = qth[sqtn]/2
+    var tx = qtx[sqtn]
+    var ty = qty[sqtn]
+    qtnw[sqtn] = newQuadTree(tx - hw, ty - hh, hw, hh)
+    qtne[sqtn] = newQuadTree(tx + hw, ty - hh, hw, hh)
+    qtsw[sqtn] = newQuadTree(tx - hw, ty + hh, hw, hh)
+    qtse[sqtn] = newQuadTree(tx + hw, ty + hh, hw, hh)
+    qthc[sqtn] = 1
+end
+
+var qtsdStack[maxQuadtrees]
+var qtsdStackSize = 0
+var qtcur = 0 
+function subdivideQuadtree(sqt)
+start
+    qtsdStackSize = 1
+    qtsdStack[1] = sqt
+    while(qtsdStackSize)
+    start
+        qtcur = qtsdStack[qtsdStackSize]
+        if(qthc[qtcur]) then
+        start
+            qtsdStack[qtsdStackSize] = qtnw[qtcur]
+            qtsdStackSize = qtsdStackSize + 1
+            qtsdStack[qtsdStackSize] = qtne[qtcur]
+            qtsdStackSize = qtsdStackSize + 1
+            qtsdStack[qtsdStackSize] = qtsw[qtcur]
+            qtsdStackSize = qtsdStackSize + 1
+            qtsdStack[qtsdStackSize] = qtse[qtcur]
+        end
+        else
+        start
+            subdivideQuadtreeNode(qtcur)
+            qtsdStackSize = qtsdStackSize - 1
+        end
+    end
 end
