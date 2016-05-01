@@ -1,0 +1,33 @@
+type AABB
+start
+  x = 0
+  y = 0
+  w = 0
+  h = 0
+end
+
+function createAABB(centerX, centerY, width, height)
+start
+    AABB temp
+    temp.x = centerX
+    temp.y = centerY
+    temp.w = width/2
+    temp.h = height/2
+    return temp
+end
+
+function AABBhasPoint(box, px, py)
+start
+  var r = ((box.x - box.w) < px)
+  r = r &&((box.y - box.h) < py)
+  r = r &&((box.x + box.w) > px)
+  r = r &&((box.y + box.y) > py)
+  return r
+end
+
+function AABBIntersects(boxA, boxB)
+start
+  var r = (abs(boxA.x - boxB.x)*2) <= (boxA.w + boxB.w)
+  r = r &&(abs(boxA.y - boxB.y)*2) <= (boxA.h + boxB.h)
+  return r
+end
