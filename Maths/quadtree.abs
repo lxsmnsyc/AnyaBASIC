@@ -36,41 +36,40 @@ end
 
 function subdivideQuadtreeNode(sqtn)
 start
-    var hw = qtw[sqtn]/2
-    var hh = qth[sqtn]/2
-    var tx = qtx[sqtn]
-    var ty = qty[sqtn]
-    qtnw[sqtn] = newQuadTree(tx - hw, ty - hh, hw, hh)
-    qtne[sqtn] = newQuadTree(tx + hw, ty - hh, hw, hh)
-    qtsw[sqtn] = newQuadTree(tx - hw, ty + hh, hw, hh)
-    qtse[sqtn] = newQuadTree(tx + hw, ty + hh, hw, hh)
-    qthc[sqtn] = 1
+    if(!qthc[sqtn]) then
+    start
+        var hw = qtw[sqtn]/2
+        var hh = qth[sqtn]/2
+        var tx = qtx[sqtn]
+        var ty = qty[sqtn]
+        qtnw[sqtn] = newQuadTree(tx - hw, ty - hh, hw, hh)
+        qtne[sqtn] = newQuadTree(tx + hw, ty - hh, hw, hh)
+        qtsw[sqtn] = newQuadTree(tx - hw, ty + hh, hw, hh)
+        qtse[sqtn] = newQuadTree(tx + hw, ty + hh, hw, hh)
+        qthc[sqtn] = 1
+    endif
 end
 
 var qtsdStack[maxQuadtrees]
-var qtsdStackSize = 0
 var qtcur = 0 
+
 function subdivideQuadtree(sqt)
 start
-    qtsdStackSize = 1
-    qtsdStack[1] = sqt
-    while(qtsdStackSize)
+    qtsdStack[0] = sqt
+    while(qtsdStack[0])
     start
-        qtcur = qtsdStack[qtsdStackSize]
+        qtcur = qtsdStack[0]
         if(qthc[qtcur]) then
         start
-            qtsdStack[qtsdStackSize] = qtnw[qtcur]
-            qtsdStackSize = qtsdStackSize + 1
-            qtsdStack[qtsdStackSize] = qtne[qtcur]
-            qtsdStackSize = qtsdStackSize + 1
-            qtsdStack[qtsdStackSize] = qtsw[qtcur]
-            qtsdStackSize = qtsdStackSize + 1
-            qtsdStack[qtsdStackSize] = qtse[qtcur]
+            qtsdStack[qtne[qtcur]] = qtnw[qtcur]
+            qtsdStack[qtsw[qtcur]] = qtne[qtcur]
+            qtsdStack[qtse[qtcur]] = qtsw[qtcur]
+            qtsdStack[0] = qtse[qtcur]
         end
         else
         start
             subdivideQuadtreeNode(qtcur)
-            qtsdStackSize = qtsdStackSize - 1
+            qtsdStack[0] = qtsdStack[qtcur]
         end
     end
 end
