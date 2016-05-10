@@ -53,7 +53,9 @@ start
     var Grid = createClass()
     var SpatialHash = createClass()
     var Object = createClass()
-    
+    #
+        Vector
+    #
     var VectorX[classInstanceMemory]
     var VectorY[classInstanceMemory]
     
@@ -64,4 +66,23 @@ start
         VectorY[vnode] = vy
     end
     
+    function vectorLen2(myVector)
+    start
+        return VectorX[myVector]*VectorX[myVector] + VectorY[myVector]*VectorY[myVector]
+    end
+    
+    function vectorLen(myVector)
+    start
+        return sqrt(vectorLen2(myVector))
+    end
+    
+    function vectorRad(myVector)
+    start
+        return atan2(VectorY[myVector], VectorX[myVector])
+    end
+    
+    function destroyVector(myVector)
+    start
+        classDealloc(Vector, myVector)
+    end
 end
