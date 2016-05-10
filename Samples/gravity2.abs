@@ -1,6 +1,11 @@
 start
-    var srecycler[8192]
-    var ssrecycler[8192][8192]
+    var classMemory = 8191
+    var classInstanceMemory = 8191
+    #
+        Class creator
+    #
+    var srecycler[classMemory + 1]
+    var ssrecycler[classMemory + 1][classInstanceMemory + 1]
     
     srecycler[0] = 1
     
@@ -40,4 +45,23 @@ start
         srecycler[myClass] = srecycler[0]
         srecycler[0] = myClass
     end
+    #
+        classes
+    #
+    var Vector = createClass()
+    var AABB = createClass()
+    var Grid = createClass()
+    var SpatialHash = createClass()
+    var Object = createClass()
+    
+    var VectorX[classInstanceMemory]
+    var VectorY[classInstanceMemory]
+    
+    function createVector(vx, vy)
+    start
+        var vnode = classAlloc(Vector)
+        VectorX[vnode] = vx
+        VectorY[vnode] = vy
+    end
+    
 end
