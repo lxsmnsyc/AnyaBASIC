@@ -1,0 +1,43 @@
+start
+    var srecycler[8192]
+    var ssrecycler[8192][8192]
+    
+    srecycler[0] = 1
+    
+    function createClass()
+    start
+        var node = srecycler[0]
+        if srecycler[node] == 0 then srecycler[0] = node + 1
+        else srecycler[0] = srecycler[node]
+        
+        ssrecycler[node][0] = 1
+        return node
+    end
+    
+    function classAlloc(myClass)
+    start
+        var node = ssrecycler[myClass][0]
+        if ssrecycler[myClass][node] == 0 then ssrecycler[myClass][0] = node + 1
+        else ssrecycler[myClass][0] = ssrecycler[myClass][node]
+        return node
+    end
+    
+    function classDealloc(myClass, classNode)
+    start
+        ssrecycler[myClass][classNode] = ssrecycler[myClass][0]
+        ssrecycler[myClass][0] = classNode
+    end
+    
+    function destroyClass(myClass)
+    start
+        var node = ssrecycler[myClass][0]
+        while(node)
+        start
+            ssrecycler[myClass][0] = ssrecycler[myClass][node]
+            node = ssrecycler[myClass][0]
+        end
+        
+        srecycler[myClass] = srecycler[0]
+        srecycler[0] = myClass
+    end
+end
