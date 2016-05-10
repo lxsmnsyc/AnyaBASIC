@@ -36,11 +36,7 @@ start
     function destroyClass(myClass)
     start
         var node = ssrecycler[myClass][0]
-        while(node)
-        start
-            ssrecycler[myClass][0] = ssrecycler[myClass][node]
-            node = ssrecycler[myClass][0]
-        end
+        while(node) node = ssrecycler[myClass][node]
         
         srecycler[myClass] = srecycler[0]
         srecycler[0] = myClass
