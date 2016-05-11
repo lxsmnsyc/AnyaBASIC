@@ -12,7 +12,7 @@ start
     function createClass()
     start
         var node = srecycler[0]
-        if srecycler[node] == 0 then srecycler[0] = node + 1
+        if (srecycler[node] == 0) then srecycler[0] = node + 1
         else srecycler[0] = srecycler[node]
         
         ssrecycler[node][0] = 1
@@ -22,7 +22,7 @@ start
     function classAlloc(myClass)
     start
         var node = ssrecycler[myClass][0]
-        if ssrecycler[myClass][node] == 0 then ssrecycler[myClass][0] = node + 1
+        if (ssrecycler[myClass][node] == 0) then ssrecycler[myClass][0] = node + 1
         else ssrecycler[myClass][0] = ssrecycler[myClass][node]
         return node
     end
@@ -46,14 +46,16 @@ start
     #
     var Vector = createClass()
     var AABB = createClass()
+	var LNode = createClass()
+	var List = createClass()
     var Grid = createClass()
     var SpatialHash = createClass()
     var Object = createClass()
     #
         Vector
     #
-    var VectorX[classInstanceMemory]
-    var VectorY[classInstanceMemory]
+    var VectorX[classInstanceMemory + 1]
+    var VectorY[classInstanceMemory + 1]
     
     function createVector(vx, vy)
     start
@@ -69,16 +71,57 @@ start
     
     function vectorLen(myVector)
     start
-        return sqrt(vectorLen2(myVector))
+        return sqrt(VectorX[myVector]*VectorX[myVector] + VectorY[myVector]*VectorY[myVector])
     end
     
     function vectorRad(myVector)
     start
         return atan2(VectorY[myVector], VectorX[myVector])
     end
+	
+	function vectorScale(myVector, scale)
+	start 
+		VectorX[myVector] = VectorX[myVector]*scale
+		VectorY[myVector] = VectorY[myVector]*scale
+	end
     
+	function vectorSetLen(myVector, newLen)
+	start
+		var vlen = vectorLen(myVector)
+		newLen = newLen/vLen
+		VectorX[myVector] = VectorX[myVector]*newLen
+		VectorY[myVector] = VectorY[myVector]*newLen
+	end
+	
     function destroyVector(myVector)
     start
         classDealloc(Vector, myVector)
     end
+	#
+		Axis-aligned Bounding Box 
+	#
+	var AABBmin[classInstanceMemory + 1]
+	var AABBmax[classInstanceMemory + 1]
+	var AABBcen[classInstanceMemory + 1]
+	var AABBwh[classInstanceMemory + 1]
+	var AABBhwh[classInstanceMemory + 1]
+	
+	function createAABB(minX, minY, width, height)
+	start
+		var anode = classAlloc(AABB)
+		AABBmin[anode] = createVector(minX, minY)
+		AABBmax[anode] = createVector(minX + width, minY + height)
+		AABBcen[anode] = createVector(minX + width/2, minY + height/2)
+		AABBwh[anode] = createVector(width, height)
+		AABBhwh[anode] = createVector(width/2, height/2)
+		return anode
+	end 
+	
+	function AABBcontains(myAABB, px, py)
+	start
+		var result = VectorX[AABBmin[myAABB]] < px
+		result = result && (VectorY[AABBmin[myAABB]] < py)
+		result = result && (VectorX[AABBmax[myAABB]] > px)
+		return result && (VectorY[AABBmax[myAABB] > py)
+	end 
 end
