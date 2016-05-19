@@ -1,0 +1,2604 @@
+#************************************************************************************
+*
+*	Bit32 by Alexis Munsayac
+*
+************************************************************************************#
+start
+	var SXOR[256]
+	SXOR[0] = 0
+	SXOR[1] = 1
+	SXOR[2] = 2
+	SXOR[3] = 3
+	SXOR[4] = 4
+	SXOR[5] = 5
+	SXOR[6] = 6
+	SXOR[7] = 7
+	SXOR[8] = 8
+	SXOR[9] = 9
+	SXOR[10] = 10
+	SXOR[11] = 11
+	SXOR[12] = 12
+	SXOR[13] = 13
+	SXOR[14] = 14
+	SXOR[15] = 15
+	SXOR[16] = 1
+	SXOR[17] = 0
+	SXOR[18] = 3
+	SXOR[19] = 2
+	SXOR[20] = 5
+	SXOR[21] = 4
+	SXOR[22] = 7
+	SXOR[23] = 6
+	SXOR[24] = 9
+	SXOR[25] = 8
+	SXOR[26] = 11
+	SXOR[27] = 10
+	SXOR[28] = 13
+	SXOR[29] = 12
+	SXOR[30] = 15
+	SXOR[31] = 14
+	SXOR[32] = 2
+	SXOR[33] = 3
+	SXOR[34] = 0
+	SXOR[35] = 1
+	SXOR[36] = 6
+	SXOR[37] = 7
+	SXOR[38] = 4
+	SXOR[39] = 5
+	SXOR[40] = 10
+	SXOR[41] = 11
+	SXOR[42] = 8
+	SXOR[43] = 9
+	SXOR[44] = 14
+	SXOR[45] = 15
+	SXOR[46] = 12
+	SXOR[47] = 13
+	SXOR[48] = 3
+	SXOR[49] = 2
+	SXOR[50] = 1
+	SXOR[51] = 0
+	SXOR[52] = 7
+	SXOR[53] = 6
+	SXOR[54] = 5
+	SXOR[55] = 4
+	SXOR[56] = 11
+	SXOR[57] = 10
+	SXOR[58] = 9
+	SXOR[59] = 8
+	SXOR[60] = 15
+	SXOR[61] = 14
+	SXOR[62] = 13
+	SXOR[63] = 12
+	SXOR[64] = 4
+	SXOR[65] = 5
+	SXOR[66] = 6
+	SXOR[67] = 7
+	SXOR[68] = 0
+	SXOR[69] = 1
+	SXOR[70] = 2
+	SXOR[71] = 3
+	SXOR[72] = 12
+	SXOR[73] = 13
+	SXOR[74] = 14
+	SXOR[75] = 15
+	SXOR[76] = 8
+	SXOR[77] = 9
+	SXOR[78] = 10
+	SXOR[79] = 11
+	SXOR[80] = 5
+	SXOR[81] = 4
+	SXOR[82] = 7
+	SXOR[83] = 6
+	SXOR[84] = 1
+	SXOR[85] = 0
+	SXOR[86] = 3
+	SXOR[87] = 2
+	SXOR[88] = 13
+	SXOR[89] = 12
+	SXOR[90] = 15
+	SXOR[91] = 14
+	SXOR[92] = 9
+	SXOR[93] = 8
+	SXOR[94] = 11
+	SXOR[95] = 10
+	SXOR[96] = 6
+	SXOR[97] = 7
+	SXOR[98] = 4
+	SXOR[99] = 5
+	SXOR[100] = 2
+	SXOR[101] = 3
+	SXOR[102] = 0
+	SXOR[103] = 1
+	SXOR[104] = 14
+	SXOR[105] = 15
+	SXOR[106] = 12
+	SXOR[107] = 13
+	SXOR[108] = 10
+	SXOR[109] = 11
+	SXOR[110] = 8
+	SXOR[111] = 9
+	SXOR[112] = 7
+	SXOR[113] = 6
+	SXOR[114] = 5
+	SXOR[115] = 4
+	SXOR[116] = 3
+	SXOR[117] = 2
+	SXOR[118] = 1
+	SXOR[119] = 0
+	SXOR[120] = 15
+	SXOR[121] = 14
+	SXOR[122] = 13
+	SXOR[123] = 12
+	SXOR[124] = 11
+	SXOR[125] = 10
+	SXOR[126] = 9
+	SXOR[127] = 8
+	SXOR[128] = 8
+	SXOR[129] = 9
+	SXOR[130] = 10
+	SXOR[131] = 11
+	SXOR[132] = 12
+	SXOR[133] = 13
+	SXOR[134] = 14
+	SXOR[135] = 15
+	SXOR[136] = 0
+	SXOR[137] = 1
+	SXOR[138] = 2
+	SXOR[139] = 3
+	SXOR[140] = 4
+	SXOR[141] = 5
+	SXOR[142] = 6
+	SXOR[143] = 7
+	SXOR[144] = 9
+	SXOR[145] = 8
+	SXOR[146] = 11
+	SXOR[147] = 10
+	SXOR[148] = 13
+	SXOR[149] = 12
+	SXOR[150] = 15
+	SXOR[151] = 14
+	SXOR[152] = 1
+	SXOR[153] = 0
+	SXOR[154] = 3
+	SXOR[155] = 2
+	SXOR[156] = 5
+	SXOR[157] = 4
+	SXOR[158] = 7
+	SXOR[159] = 6
+	SXOR[160] = 10
+	SXOR[161] = 11
+	SXOR[162] = 8
+	SXOR[163] = 9
+	SXOR[164] = 14
+	SXOR[165] = 15
+	SXOR[166] = 12
+	SXOR[167] = 13
+	SXOR[168] = 2
+	SXOR[169] = 3
+	SXOR[170] = 0
+	SXOR[171] = 1
+	SXOR[172] = 6
+	SXOR[173] = 7
+	SXOR[174] = 4
+	SXOR[175] = 5
+	SXOR[176] = 11
+	SXOR[177] = 10
+	SXOR[178] = 9
+	SXOR[179] = 8
+	SXOR[180] = 15
+	SXOR[181] = 14
+	SXOR[182] = 13
+	SXOR[183] = 12
+	SXOR[184] = 3
+	SXOR[185] = 2
+	SXOR[186] = 1
+	SXOR[187] = 0
+	SXOR[188] = 7
+	SXOR[189] = 6
+	SXOR[190] = 5
+	SXOR[191] = 4
+	SXOR[192] = 12
+	SXOR[193] = 13
+	SXOR[194] = 14
+	SXOR[195] = 15
+	SXOR[196] = 8
+	SXOR[197] = 9
+	SXOR[198] = 10
+	SXOR[199] = 11
+	SXOR[200] = 4
+	SXOR[201] = 5
+	SXOR[202] = 6
+	SXOR[203] = 7
+	SXOR[204] = 0
+	SXOR[205] = 1
+	SXOR[206] = 2
+	SXOR[207] = 3
+	SXOR[208] = 13
+	SXOR[209] = 12
+	SXOR[210] = 15
+	SXOR[211] = 14
+	SXOR[212] = 9
+	SXOR[213] = 8
+	SXOR[214] = 11
+	SXOR[215] = 10
+	SXOR[216] = 5
+	SXOR[217] = 4
+	SXOR[218] = 7
+	SXOR[219] = 6
+	SXOR[220] = 1
+	SXOR[221] = 0
+	SXOR[222] = 3
+	SXOR[223] = 2
+	SXOR[224] = 14
+	SXOR[225] = 15
+	SXOR[226] = 12
+	SXOR[227] = 13
+	SXOR[228] = 10
+	SXOR[229] = 11
+	SXOR[230] = 8
+	SXOR[231] = 9
+	SXOR[232] = 6
+	SXOR[233] = 7
+	SXOR[234] = 4
+	SXOR[235] = 5
+	SXOR[236] = 2
+	SXOR[237] = 3
+	SXOR[238] = 0
+	SXOR[239] = 1
+	SXOR[240] = 15
+	SXOR[241] = 14
+	SXOR[242] = 13
+	SXOR[243] = 12
+	SXOR[244] = 11
+	SXOR[245] = 10
+	SXOR[246] = 9
+	SXOR[247] = 8
+	SXOR[248] = 7
+	SXOR[249] = 6
+	SXOR[250] = 5
+	SXOR[251] = 4
+	SXOR[252] = 3
+	SXOR[253] = 2
+	SXOR[254] = 1
+	SXOR[255] = 0
+	var SAND[256]
+	SAND[0] = 0
+	SAND[1] = 0
+	SAND[2] = 0
+	SAND[3] = 0
+	SAND[4] = 0
+	SAND[5] = 0
+	SAND[6] = 0
+	SAND[7] = 0
+	SAND[8] = 0
+	SAND[9] = 0
+	SAND[10] = 0
+	SAND[11] = 0
+	SAND[12] = 0
+	SAND[13] = 0
+	SAND[14] = 0
+	SAND[15] = 0
+	SAND[16] = 0
+	SAND[17] = 1
+	SAND[18] = 0
+	SAND[19] = 1
+	SAND[20] = 0
+	SAND[21] = 1
+	SAND[22] = 0
+	SAND[23] = 1
+	SAND[24] = 0
+	SAND[25] = 1
+	SAND[26] = 0
+	SAND[27] = 1
+	SAND[28] = 0
+	SAND[29] = 1
+	SAND[30] = 0
+	SAND[31] = 1
+	SAND[32] = 0
+	SAND[33] = 0
+	SAND[34] = 2
+	SAND[35] = 2
+	SAND[36] = 0
+	SAND[37] = 0
+	SAND[38] = 2
+	SAND[39] = 2
+	SAND[40] = 0
+	SAND[41] = 0
+	SAND[42] = 2
+	SAND[43] = 2
+	SAND[44] = 0
+	SAND[45] = 0
+	SAND[46] = 2
+	SAND[47] = 2
+	SAND[48] = 0
+	SAND[49] = 1
+	SAND[50] = 2
+	SAND[51] = 3
+	SAND[52] = 0
+	SAND[53] = 1
+	SAND[54] = 2
+	SAND[55] = 3
+	SAND[56] = 0
+	SAND[57] = 1
+	SAND[58] = 2
+	SAND[59] = 3
+	SAND[60] = 0
+	SAND[61] = 1
+	SAND[62] = 2
+	SAND[63] = 3
+	SAND[64] = 0
+	SAND[65] = 0
+	SAND[66] = 0
+	SAND[67] = 0
+	SAND[68] = 4
+	SAND[69] = 4
+	SAND[70] = 4
+	SAND[71] = 4
+	SAND[72] = 0
+	SAND[73] = 0
+	SAND[74] = 0
+	SAND[75] = 0
+	SAND[76] = 4
+	SAND[77] = 4
+	SAND[78] = 4
+	SAND[79] = 4
+	SAND[80] = 0
+	SAND[81] = 1
+	SAND[82] = 0
+	SAND[83] = 1
+	SAND[84] = 4
+	SAND[85] = 5
+	SAND[86] = 4
+	SAND[87] = 5
+	SAND[88] = 0
+	SAND[89] = 1
+	SAND[90] = 0
+	SAND[91] = 1
+	SAND[92] = 4
+	SAND[93] = 5
+	SAND[94] = 4
+	SAND[95] = 5
+	SAND[96] = 0
+	SAND[97] = 0
+	SAND[98] = 2
+	SAND[99] = 2
+	SAND[100] = 4
+	SAND[101] = 4
+	SAND[102] = 6
+	SAND[103] = 6
+	SAND[104] = 0
+	SAND[105] = 0
+	SAND[106] = 2
+	SAND[107] = 2
+	SAND[108] = 4
+	SAND[109] = 4
+	SAND[110] = 6
+	SAND[111] = 6
+	SAND[112] = 0
+	SAND[113] = 1
+	SAND[114] = 2
+	SAND[115] = 3
+	SAND[116] = 4
+	SAND[117] = 5
+	SAND[118] = 6
+	SAND[119] = 7
+	SAND[120] = 0
+	SAND[121] = 1
+	SAND[122] = 2
+	SAND[123] = 3
+	SAND[124] = 4
+	SAND[125] = 5
+	SAND[126] = 6
+	SAND[127] = 7
+	SAND[128] = 0
+	SAND[129] = 0
+	SAND[130] = 0
+	SAND[131] = 0
+	SAND[132] = 0
+	SAND[133] = 0
+	SAND[134] = 0
+	SAND[135] = 0
+	SAND[136] = 8
+	SAND[137] = 8
+	SAND[138] = 8
+	SAND[139] = 8
+	SAND[140] = 8
+	SAND[141] = 8
+	SAND[142] = 8
+	SAND[143] = 8
+	SAND[144] = 0
+	SAND[145] = 1
+	SAND[146] = 0
+	SAND[147] = 1
+	SAND[148] = 0
+	SAND[149] = 1
+	SAND[150] = 0
+	SAND[151] = 1
+	SAND[152] = 8
+	SAND[153] = 9
+	SAND[154] = 8
+	SAND[155] = 9
+	SAND[156] = 8
+	SAND[157] = 9
+	SAND[158] = 8
+	SAND[159] = 9
+	SAND[160] = 0
+	SAND[161] = 0
+	SAND[162] = 2
+	SAND[163] = 2
+	SAND[164] = 0
+	SAND[165] = 0
+	SAND[166] = 2
+	SAND[167] = 2
+	SAND[168] = 8
+	SAND[169] = 8
+	SAND[170] = 10
+	SAND[171] = 10
+	SAND[172] = 8
+	SAND[173] = 8
+	SAND[174] = 10
+	SAND[175] = 10
+	SAND[176] = 0
+	SAND[177] = 1
+	SAND[178] = 2
+	SAND[179] = 3
+	SAND[180] = 0
+	SAND[181] = 1
+	SAND[182] = 2
+	SAND[183] = 3
+	SAND[184] = 8
+	SAND[185] = 9
+	SAND[186] = 10
+	SAND[187] = 11
+	SAND[188] = 8
+	SAND[189] = 9
+	SAND[190] = 10
+	SAND[191] = 11
+	SAND[192] = 0
+	SAND[193] = 0
+	SAND[194] = 0
+	SAND[195] = 0
+	SAND[196] = 4
+	SAND[197] = 4
+	SAND[198] = 4
+	SAND[199] = 4
+	SAND[200] = 8
+	SAND[201] = 8
+	SAND[202] = 8
+	SAND[203] = 8
+	SAND[204] = 12
+	SAND[205] = 12
+	SAND[206] = 12
+	SAND[207] = 12
+	SAND[208] = 0
+	SAND[209] = 1
+	SAND[210] = 0
+	SAND[211] = 1
+	SAND[212] = 4
+	SAND[213] = 5
+	SAND[214] = 4
+	SAND[215] = 5
+	SAND[216] = 8
+	SAND[217] = 9
+	SAND[218] = 8
+	SAND[219] = 9
+	SAND[220] = 12
+	SAND[221] = 13
+	SAND[222] = 12
+	SAND[223] = 13
+	SAND[224] = 0
+	SAND[225] = 0
+	SAND[226] = 2
+	SAND[227] = 2
+	SAND[228] = 4
+	SAND[229] = 4
+	SAND[230] = 6
+	SAND[231] = 6
+	SAND[232] = 8
+	SAND[233] = 8
+	SAND[234] = 10
+	SAND[235] = 10
+	SAND[236] = 12
+	SAND[237] = 12
+	SAND[238] = 14
+	SAND[239] = 14
+	SAND[240] = 0
+	SAND[241] = 1
+	SAND[242] = 2
+	SAND[243] = 3
+	SAND[244] = 4
+	SAND[245] = 5
+	SAND[246] = 6
+	SAND[247] = 7
+	SAND[248] = 8
+	SAND[249] = 9
+	SAND[250] = 10
+	SAND[251] = 11
+	SAND[252] = 12
+	SAND[253] = 13
+	SAND[254] = 14
+	SAND[255] = 15
+	var SOR[256]
+	SOR[0] = 0
+	SOR[1] = 1
+	SOR[2] = 2
+	SOR[3] = 3
+	SOR[4] = 4
+	SOR[5] = 5
+	SOR[6] = 6
+	SOR[7] = 7
+	SOR[8] = 8
+	SOR[9] = 9
+	SOR[10] = 10
+	SOR[11] = 11
+	SOR[12] = 12
+	SOR[13] = 13
+	SOR[14] = 14
+	SOR[15] = 15
+	SOR[16] = 1
+	SOR[17] = 1
+	SOR[18] = 3
+	SOR[19] = 3
+	SOR[20] = 5
+	SOR[21] = 5
+	SOR[22] = 7
+	SOR[23] = 7
+	SOR[24] = 9
+	SOR[25] = 9
+	SOR[26] = 11
+	SOR[27] = 11
+	SOR[28] = 13
+	SOR[29] = 13
+	SOR[30] = 15
+	SOR[31] = 15
+	SOR[32] = 2
+	SOR[33] = 3
+	SOR[34] = 2
+	SOR[35] = 3
+	SOR[36] = 6
+	SOR[37] = 7
+	SOR[38] = 6
+	SOR[39] = 7
+	SOR[40] = 10
+	SOR[41] = 11
+	SOR[42] = 10
+	SOR[43] = 11
+	SOR[44] = 14
+	SOR[45] = 15
+	SOR[46] = 14
+	SOR[47] = 15
+	SOR[48] = 3
+	SOR[49] = 3
+	SOR[50] = 3
+	SOR[51] = 3
+	SOR[52] = 7
+	SOR[53] = 7
+	SOR[54] = 7
+	SOR[55] = 7
+	SOR[56] = 11
+	SOR[57] = 11
+	SOR[58] = 11
+	SOR[59] = 11
+	SOR[60] = 15
+	SOR[61] = 15
+	SOR[62] = 15
+	SOR[63] = 15
+	SOR[64] = 4
+	SOR[65] = 5
+	SOR[66] = 6
+	SOR[67] = 7
+	SOR[68] = 4
+	SOR[69] = 5
+	SOR[70] = 6
+	SOR[71] = 7
+	SOR[72] = 12
+	SOR[73] = 13
+	SOR[74] = 14
+	SOR[75] = 15
+	SOR[76] = 12
+	SOR[77] = 13
+	SOR[78] = 14
+	SOR[79] = 15
+	SOR[80] = 5
+	SOR[81] = 5
+	SOR[82] = 7
+	SOR[83] = 7
+	SOR[84] = 5
+	SOR[85] = 5
+	SOR[86] = 7
+	SOR[87] = 7
+	SOR[88] = 13
+	SOR[89] = 13
+	SOR[90] = 15
+	SOR[91] = 15
+	SOR[92] = 13
+	SOR[93] = 13
+	SOR[94] = 15
+	SOR[95] = 15
+	SOR[96] = 6
+	SOR[97] = 7
+	SOR[98] = 6
+	SOR[99] = 7
+	SOR[100] = 6
+	SOR[101] = 7
+	SOR[102] = 6
+	SOR[103] = 7
+	SOR[104] = 14
+	SOR[105] = 15
+	SOR[106] = 14
+	SOR[107] = 15
+	SOR[108] = 14
+	SOR[109] = 15
+	SOR[110] = 14
+	SOR[111] = 15
+	SOR[112] = 7
+	SOR[113] = 7
+	SOR[114] = 7
+	SOR[115] = 7
+	SOR[116] = 7
+	SOR[117] = 7
+	SOR[118] = 7
+	SOR[119] = 7
+	SOR[120] = 15
+	SOR[121] = 15
+	SOR[122] = 15
+	SOR[123] = 15
+	SOR[124] = 15
+	SOR[125] = 15
+	SOR[126] = 15
+	SOR[127] = 15
+	SOR[128] = 8
+	SOR[129] = 9
+	SOR[130] = 10
+	SOR[131] = 11
+	SOR[132] = 12
+	SOR[133] = 13
+	SOR[134] = 14
+	SOR[135] = 15
+	SOR[136] = 8
+	SOR[137] = 9
+	SOR[138] = 10
+	SOR[139] = 11
+	SOR[140] = 12
+	SOR[141] = 13
+	SOR[142] = 14
+	SOR[143] = 15
+	SOR[144] = 9
+	SOR[145] = 9
+	SOR[146] = 11
+	SOR[147] = 11
+	SOR[148] = 13
+	SOR[149] = 13
+	SOR[150] = 15
+	SOR[151] = 15
+	SOR[152] = 9
+	SOR[153] = 9
+	SOR[154] = 11
+	SOR[155] = 11
+	SOR[156] = 13
+	SOR[157] = 13
+	SOR[158] = 15
+	SOR[159] = 15
+	SOR[160] = 10
+	SOR[161] = 11
+	SOR[162] = 10
+	SOR[163] = 11
+	SOR[164] = 14
+	SOR[165] = 15
+	SOR[166] = 14
+	SOR[167] = 15
+	SOR[168] = 10
+	SOR[169] = 11
+	SOR[170] = 10
+	SOR[171] = 11
+	SOR[172] = 14
+	SOR[173] = 15
+	SOR[174] = 14
+	SOR[175] = 15
+	SOR[176] = 11
+	SOR[177] = 11
+	SOR[178] = 11
+	SOR[179] = 11
+	SOR[180] = 15
+	SOR[181] = 15
+	SOR[182] = 15
+	SOR[183] = 15
+	SOR[184] = 11
+	SOR[185] = 11
+	SOR[186] = 11
+	SOR[187] = 11
+	SOR[188] = 15
+	SOR[189] = 15
+	SOR[190] = 15
+	SOR[191] = 15
+	SOR[192] = 12
+	SOR[193] = 13
+	SOR[194] = 14
+	SOR[195] = 15
+	SOR[196] = 12
+	SOR[197] = 13
+	SOR[198] = 14
+	SOR[199] = 15
+	SOR[200] = 12
+	SOR[201] = 13
+	SOR[202] = 14
+	SOR[203] = 15
+	SOR[204] = 12
+	SOR[205] = 13
+	SOR[206] = 14
+	SOR[207] = 15
+	SOR[208] = 13
+	SOR[209] = 13
+	SOR[210] = 15
+	SOR[211] = 15
+	SOR[212] = 13
+	SOR[213] = 13
+	SOR[214] = 15
+	SOR[215] = 15
+	SOR[216] = 13
+	SOR[217] = 13
+	SOR[218] = 15
+	SOR[219] = 15
+	SOR[220] = 13
+	SOR[221] = 13
+	SOR[222] = 15
+	SOR[223] = 15
+	SOR[224] = 14
+	SOR[225] = 15
+	SOR[226] = 14
+	SOR[227] = 15
+	SOR[228] = 14
+	SOR[229] = 15
+	SOR[230] = 14
+	SOR[231] = 15
+	SOR[232] = 14
+	SOR[233] = 15
+	SOR[234] = 14
+	SOR[235] = 15
+	SOR[236] = 14
+	SOR[237] = 15
+	SOR[238] = 14
+	SOR[239] = 15
+	SOR[240] = 15
+	SOR[241] = 15
+	SOR[242] = 15
+	SOR[243] = 15
+	SOR[244] = 15
+	SOR[245] = 15
+	SOR[246] = 15
+	SOR[247] = 15
+	SOR[248] = 15
+	SOR[249] = 15
+	SOR[250] = 15
+	SOR[251] = 15
+	SOR[252] = 15
+	SOR[253] = 15
+	SOR[254] = 15
+	SOR[255] = 15
+	var shift[32]
+	shift[0] = 1
+	shift[1] = 2
+	shift[2] = 4
+	shift[3] = 8
+	shift[4] = 16
+	shift[5] = 32
+	shift[6] = 64
+	shift[7] = 128
+	shift[8] = 256
+	shift[9] = 512
+	shift[10] = 1024
+	shift[11] = 2048
+	shift[12] = 4096
+	shift[13] = 8192
+	shift[14] = 16384
+	shift[15] = 32768
+	shift[16] = 65536
+	shift[17] = 131072
+	shift[18] = 262144
+	shift[19] = 524288
+	shift[20] = 1048576
+	shift[21] = 2097152
+	shift[22] = 4194304
+	shift[23] = 8388608
+	shift[24] = 16777216
+	shift[25] = 33554432
+	shift[26] = 67108864
+	shift[27] = 134217728
+	shift[28] = 268435456
+	shift[29] = 536870912
+	shift[30] = 1073741824
+	shift[31] = -2147483648
+	
+	function int32(val)
+	start
+		if(val <= 2147483647 && val >= -2147483648) then return int(val)
+		else if(val > 2147483647) then return int32(-4294967296 + val)
+		else if(val < -2147483648) then return int32(4294967296 - val)
+	end
+	
+	function And4(and4A, and4B)
+	start 
+		return SAND[and4A*16 + and4B]
+	end
+	
+	function Or4(or4A, or4B)
+	start
+		return SOR[or4A*16 + or4B]
+	end
+	
+	function Xor4(xor4A, xor4B)
+	start
+		return SXOR[xor4A*16 + xor4B]
+	end
+	
+	function And8(and8A, and8B)
+	start
+		return And4(int32(and8A/16), int32(and8B/16))*16 + And4(and8A%16, and8B%16)
+	end
+	
+	function Or8(or8A, or8B)
+	start
+		return Or4(int32(or8A/16), int32(or8B/16))*16 + Or4(or8A%16, or8B%16)
+	end
+	
+	function Xor8(xor8A, xor8B)
+	start
+		return Xor4(int32(xor8A/16), int32(xor8B/16))*16 + Xor4(xor8A%16, xor8B%16)
+	end
+	
+	function And16(and16A, and16B)
+	start
+		return And8(int32(and16A/256), int32(and16B/256))*256 + And8(and16A%256, and16B%256)
+	end 
+	
+	function Or16(or16A ,or16B)
+	start
+		return Or8(int32(or16A/256), int32(or16B/256))*256 + Or8(or16A%256, or16B%256)
+	end 
+	
+	function Xor16(xor16A, xor16B)
+	start
+		return Xor8(int32(xor16A/256), int32(xor16B/256))*256 + Xor8(xor16A%256, xor16B%256)
+	end 
+	
+	function Not32(not32A)
+	start
+		return -int32(not32A) - 1
+	end
+	
+	function And32(and32A, and32B)
+	start
+		var b1 = 0
+		var b2 = 0
+		if (and32A < 0) then
+		start
+			and32A = int32(-2147483648 + and32A)
+			b1 = 32768
+		end
+		if (and32B < 0) then
+		start
+			and32B = int32(-2147483648 + and32B)
+			b2 = 32768
+		end
+		return int32(And16(b1 + int32(and32A/65536), b2 + int32(and32B/65536))*65536 + And16(and32A%65536, and32B%65536))
+	end
+	
+	function Or32(or32A, or32B)
+	start
+		var b1 = 0
+		var b2 = 0
+		if (or32A < 0) then
+		start
+			or32A = int32(-2147483648 + or32A)
+			b1 = 32768
+		end
+		if (or32B < 0) then
+		start
+			or32B = int32(-2147483648 + or32B)
+			b2 = 32768
+		end
+		return int32(Or16(b1 + int32(or32A/65536), b2 + int32(or32B/65536))*65536 + Or16(or32A%65536, or32B%65536))
+	end
+	
+	function Xor32(xor32A, xor32B)
+	start
+		var b1 = 0
+		var b2 = 0
+		if (xor32A < 0) then
+		start
+			xor32A = int32(-2147483648 + xor32A)
+			b1 = 32768
+		end
+		if (xor32B < 0) then
+		start
+			xor32B = int32(-2147483648 + xor32B)
+			b2 = 32768
+		end
+		return int32(Xor16(b1 + int32(xor32A/65536), b2 + int32(xor32B/65536))*65536 + Xor16(xor32A%65536, xor32B%65536))
+	end
+	
+	function LShift(toLShift, lshifts)
+	start
+		return int32(toLShift*shift[lshifts])
+	end
+	
+	function RShift(toRShift, rshifts)
+	start
+		return int32(toRShift/shift[rshifts])
+	end
+	
+	function LRot(toLRot, lrots)
+	start
+		return Or32(LShift(toLRot, lrots), RShift(toLRot, 32 - lrots))
+	end
+	
+	function RRot(toRRot, rrots)
+	start
+		return Or32(RShift(toRRot, rrots), LShift(toRRot, 32 - rrots))
+	end
+	
+	# wikipedia.org/wiki/Rijndael_S-box #
+	var SBOX[256]
+	var RSBOX[256]
+	SBOX[0] = 99
+	SBOX[1] = 124
+	SBOX[2] = 119
+	SBOX[3] = 123
+	SBOX[4] = 242
+	SBOX[5] = 107
+	SBOX[6] = 111
+	SBOX[7] = 197
+	SBOX[8] = 48
+	SBOX[9] = 1
+	SBOX[10] = 103
+	SBOX[11] = 43
+	SBOX[12] = 254
+	SBOX[13] = 215
+	SBOX[14] = 171
+	SBOX[15] = 118
+	SBOX[16] = 202
+	SBOX[17] = 130
+	SBOX[18] = 201
+	SBOX[19] = 125
+	SBOX[20] = 250
+	SBOX[21] = 89
+	SBOX[22] = 71
+	SBOX[23] = 240
+	SBOX[24] = 173
+	SBOX[25] = 212
+	SBOX[26] = 162
+	SBOX[27] = 175
+	SBOX[28] = 156
+	SBOX[29] = 164
+	SBOX[30] = 114
+	SBOX[31] = 192
+	SBOX[32] = 183
+	SBOX[33] = 253
+	SBOX[34] = 147
+	SBOX[35] = 38
+	SBOX[36] = 54
+	SBOX[37] = 63
+	SBOX[38] = 247
+	SBOX[39] = 204
+	SBOX[40] = 52
+	SBOX[41] = 165
+	SBOX[42] = 229
+	SBOX[43] = 241
+	SBOX[44] = 113
+	SBOX[45] = 216
+	SBOX[46] = 49
+	SBOX[47] = 21
+	SBOX[48] = 4
+	SBOX[49] = 199
+	SBOX[50] = 35
+	SBOX[51] = 195
+	SBOX[52] = 24
+	SBOX[53] = 150
+	SBOX[54] = 5
+	SBOX[55] = 154
+	SBOX[56] = 7
+	SBOX[57] = 18
+	SBOX[58] = 128
+	SBOX[59] = 226
+	SBOX[60] = 235
+	SBOX[61] = 39
+	SBOX[62] = 178
+	SBOX[63] = 117
+	SBOX[64] = 9
+	SBOX[65] = 131
+	SBOX[66] = 44
+	SBOX[67] = 26
+	SBOX[68] = 27
+	SBOX[69] = 110
+	SBOX[70] = 90
+	SBOX[71] = 160
+	SBOX[72] = 82
+	SBOX[73] = 59
+	SBOX[74] = 214
+	SBOX[75] = 179
+	SBOX[76] = 41
+	SBOX[77] = 227
+	SBOX[78] = 47
+	SBOX[79] = 132
+	SBOX[80] = 83
+	SBOX[81] = 209
+	SBOX[82] = 0
+	SBOX[83] = 237
+	SBOX[84] = 32
+	SBOX[85] = 252
+	SBOX[86] = 177
+	SBOX[87] = 91
+	SBOX[88] = 106
+	SBOX[89] = 203
+	SBOX[90] = 190
+	SBOX[91] = 57
+	SBOX[92] = 74
+	SBOX[93] = 76
+	SBOX[94] = 88
+	SBOX[95] = 207
+	SBOX[96] = 208
+	SBOX[97] = 239
+	SBOX[98] = 170
+	SBOX[99] = 251
+	SBOX[100] = 67
+	SBOX[101] = 77
+	SBOX[102] = 51
+	SBOX[103] = 133
+	SBOX[104] = 69
+	SBOX[105] = 249
+	SBOX[106] = 2
+	SBOX[107] = 127
+	SBOX[108] = 80
+	SBOX[109] = 60
+	SBOX[110] = 159
+	SBOX[111] = 168
+	SBOX[112] = 81
+	SBOX[113] = 163
+	SBOX[114] = 64
+	SBOX[115] = 143
+	SBOX[116] = 146
+	SBOX[117] = 157
+	SBOX[118] = 56
+	SBOX[119] = 245
+	SBOX[120] = 188
+	SBOX[121] = 182
+	SBOX[122] = 218
+	SBOX[123] = 33
+	SBOX[124] = 16
+	SBOX[125] = 255
+	SBOX[126] = 243
+	SBOX[127] = 210
+	SBOX[128] = 205
+	SBOX[129] = 12
+	SBOX[130] = 19
+	SBOX[131] = 236
+	SBOX[132] = 95
+	SBOX[133] = 151
+	SBOX[134] = 68
+	SBOX[135] = 23
+	SBOX[136] = 196
+	SBOX[137] = 167
+	SBOX[138] = 126
+	SBOX[139] = 61
+	SBOX[140] = 100
+	SBOX[141] = 93
+	SBOX[142] = 25
+	SBOX[143] = 115
+	SBOX[144] = 96
+	SBOX[145] = 129
+	SBOX[146] = 79
+	SBOX[147] = 220
+	SBOX[148] = 34
+	SBOX[149] = 42
+	SBOX[150] = 144
+	SBOX[151] = 136
+	SBOX[152] = 70
+	SBOX[153] = 238
+	SBOX[154] = 184
+	SBOX[155] = 20
+	SBOX[156] = 222
+	SBOX[157] = 94
+	SBOX[158] = 11
+	SBOX[159] = 219
+	SBOX[160] = 224
+	SBOX[161] = 50
+	SBOX[162] = 58
+	SBOX[163] = 10
+	SBOX[164] = 73
+	SBOX[165] = 6
+	SBOX[166] = 36
+	SBOX[167] = 92
+	SBOX[168] = 194
+	SBOX[169] = 211
+	SBOX[170] = 172
+	SBOX[171] = 98
+	SBOX[172] = 145
+	SBOX[173] = 149
+	SBOX[174] = 228
+	SBOX[175] = 121
+	SBOX[176] = 231
+	SBOX[177] = 200
+	SBOX[178] = 55
+	SBOX[179] = 109
+	SBOX[180] = 141
+	SBOX[181] = 213
+	SBOX[182] = 78
+	SBOX[183] = 169
+	SBOX[184] = 108
+	SBOX[185] = 86
+	SBOX[186] = 244
+	SBOX[187] = 234
+	SBOX[188] = 101
+	SBOX[189] = 122
+	SBOX[190] = 174
+	SBOX[191] = 8
+	SBOX[192] = 186
+	SBOX[193] = 120
+	SBOX[194] = 37
+	SBOX[195] = 46
+	SBOX[196] = 28
+	SBOX[197] = 166
+	SBOX[198] = 180
+	SBOX[199] = 198
+	SBOX[200] = 232
+	SBOX[201] = 221
+	SBOX[202] = 116
+	SBOX[203] = 31
+	SBOX[204] = 75
+	SBOX[205] = 189
+	SBOX[206] = 139
+	SBOX[207] = 138
+	SBOX[208] = 112
+	SBOX[209] = 62
+	SBOX[210] = 181
+	SBOX[211] = 102
+	SBOX[212] = 72
+	SBOX[213] = 3
+	SBOX[214] = 246
+	SBOX[215] = 14
+	SBOX[216] = 97
+	SBOX[217] = 53
+	SBOX[218] = 87
+	SBOX[219] = 185
+	SBOX[220] = 134
+	SBOX[221] = 193
+	SBOX[222] = 29
+	SBOX[223] = 158
+	SBOX[224] = 225
+	SBOX[225] = 248
+	SBOX[226] = 152
+	SBOX[227] = 17
+	SBOX[228] = 105
+	SBOX[229] = 217
+	SBOX[230] = 142
+	SBOX[231] = 148
+	SBOX[232] = 155
+	SBOX[233] = 30
+	SBOX[234] = 135
+	SBOX[235] = 233
+	SBOX[236] = 206
+	SBOX[237] = 85
+	SBOX[238] = 40
+	SBOX[239] = 223
+	SBOX[240] = 140
+	SBOX[241] = 161
+	SBOX[242] = 137
+	SBOX[243] = 13
+	SBOX[244] = 191
+	SBOX[245] = 230
+	SBOX[246] = 66
+	SBOX[247] = 104
+	SBOX[248] = 65
+	SBOX[249] = 153
+	SBOX[250] = 45
+	SBOX[251] = 15
+	SBOX[252] = 176
+	SBOX[253] = 84
+	SBOX[254] = 187
+	SBOX[255] = 22
+	
+	RSBOX[99] = 0
+	RSBOX[124] = 1
+	RSBOX[119] = 2
+	RSBOX[123] = 3
+	RSBOX[242] = 4
+	RSBOX[107] = 5
+	RSBOX[111] = 6
+	RSBOX[197] = 7
+	RSBOX[48] = 8
+	RSBOX[1] = 9
+	RSBOX[103] = 10
+	RSBOX[43] = 11
+	RSBOX[254] = 12
+	RSBOX[215] = 13
+	RSBOX[171] = 14
+	RSBOX[118] = 15
+	RSBOX[202] = 16
+	RSBOX[130] = 17
+	RSBOX[201] = 18
+	RSBOX[125] = 19
+	RSBOX[250] = 20
+	RSBOX[89] = 21
+	RSBOX[71] = 22
+	RSBOX[240] = 23
+	RSBOX[173] = 24
+	RSBOX[212] = 25
+	RSBOX[162] = 26
+	RSBOX[175] = 27
+	RSBOX[156] = 28
+	RSBOX[164] = 29
+	RSBOX[114] = 30
+	RSBOX[192] = 31
+	RSBOX[183] = 32
+	RSBOX[253] = 33
+	RSBOX[147] = 34
+	RSBOX[38] = 35
+	RSBOX[54] = 36
+	RSBOX[63] = 37
+	RSBOX[247] = 38
+	RSBOX[204] = 39
+	RSBOX[52] = 40
+	RSBOX[165] = 41
+	RSBOX[229] = 42
+	RSBOX[241] = 43
+	RSBOX[113] = 44
+	RSBOX[216] = 45
+	RSBOX[49] = 46
+	RSBOX[21] = 47
+	RSBOX[4] = 48
+	RSBOX[199] = 49
+	RSBOX[35] = 50
+	RSBOX[195] = 51
+	RSBOX[24] = 52
+	RSBOX[150] = 53
+	RSBOX[5] = 54
+	RSBOX[154] = 55
+	RSBOX[7] = 56
+	RSBOX[18] = 57
+	RSBOX[128] = 58
+	RSBOX[226] = 59
+	RSBOX[235] = 60
+	RSBOX[39] = 61
+	RSBOX[178] = 62
+	RSBOX[117] = 63
+	RSBOX[9] = 64
+	RSBOX[131] = 65
+	RSBOX[44] = 66
+	RSBOX[26] = 67
+	RSBOX[27] = 68
+	RSBOX[110] = 69
+	RSBOX[90] = 70
+	RSBOX[160] = 71
+	RSBOX[82] = 72
+	RSBOX[59] = 73
+	RSBOX[214] = 74
+	RSBOX[179] = 75
+	RSBOX[41] = 76
+	RSBOX[227] = 77
+	RSBOX[47] = 78
+	RSBOX[132] = 79
+	RSBOX[83] = 80
+	RSBOX[209] = 81
+	RSBOX[0] = 82
+	RSBOX[237] = 83
+	RSBOX[32] = 84
+	RSBOX[252] = 85
+	RSBOX[177] = 86
+	RSBOX[91] = 87
+	RSBOX[106] = 88
+	RSBOX[203] = 89
+	RSBOX[190] = 90
+	RSBOX[57] = 91
+	RSBOX[74] = 92
+	RSBOX[76] = 93
+	RSBOX[88] = 94
+	RSBOX[207] = 95
+	RSBOX[208] = 96
+	RSBOX[239] = 97
+	RSBOX[170] = 98
+	RSBOX[251] = 99
+	RSBOX[67] = 100
+	RSBOX[77] = 101
+	RSBOX[51] = 102
+	RSBOX[133] = 103
+	RSBOX[69] = 104
+	RSBOX[249] = 105
+	RSBOX[2] = 106
+	RSBOX[127] = 107
+	RSBOX[80] = 108
+	RSBOX[60] = 109
+	RSBOX[159] = 110
+	RSBOX[168] = 111
+	RSBOX[81] = 112
+	RSBOX[163] = 113
+	RSBOX[64] = 114
+	RSBOX[143] = 115
+	RSBOX[146] = 116
+	RSBOX[157] = 117
+	RSBOX[56] = 118
+	RSBOX[245] = 119
+	RSBOX[188] = 120
+	RSBOX[182] = 121
+	RSBOX[218] = 122
+	RSBOX[33] = 123
+	RSBOX[16] = 124
+	RSBOX[255] = 125
+	RSBOX[243] = 126
+	RSBOX[210] = 127
+	RSBOX[205] = 128
+	RSBOX[12] = 129
+	RSBOX[19] = 130
+	RSBOX[236] = 131
+	RSBOX[95] = 132
+	RSBOX[151] = 133
+	RSBOX[68] = 134
+	RSBOX[23] = 135
+	RSBOX[196] = 136
+	RSBOX[167] = 137
+	RSBOX[126] = 138
+	RSBOX[61] = 139
+	RSBOX[100] = 140
+	RSBOX[93] = 141
+	RSBOX[25] = 142
+	RSBOX[115] = 143
+	RSBOX[96] = 144
+	RSBOX[129] = 145
+	RSBOX[79] = 146
+	RSBOX[220] = 147
+	RSBOX[34] = 148
+	RSBOX[42] = 149
+	RSBOX[144] = 150
+	RSBOX[136] = 151
+	RSBOX[70] = 152
+	RSBOX[238] = 153
+	RSBOX[184] = 154
+	RSBOX[20] = 155
+	RSBOX[222] = 156
+	RSBOX[94] = 157
+	RSBOX[11] = 158
+	RSBOX[219] = 159
+	RSBOX[224] = 160
+	RSBOX[50] = 161
+	RSBOX[58] = 162
+	RSBOX[10] = 163
+	RSBOX[73] = 164
+	RSBOX[6] = 165
+	RSBOX[36] = 166
+	RSBOX[92] = 167
+	RSBOX[194] = 168
+	RSBOX[211] = 169
+	RSBOX[172] = 170
+	RSBOX[98] = 171
+	RSBOX[145] = 172
+	RSBOX[149] = 173
+	RSBOX[228] = 174
+	RSBOX[121] = 175
+	RSBOX[231] = 176
+	RSBOX[200] = 177
+	RSBOX[55] = 178
+	RSBOX[109] = 179
+	RSBOX[141] = 180
+	RSBOX[213] = 181
+	RSBOX[78] = 182
+	RSBOX[169] = 183
+	RSBOX[108] = 184
+	RSBOX[86] = 185
+	RSBOX[244] = 186
+	RSBOX[234] = 187
+	RSBOX[101] = 188
+	RSBOX[122] = 189
+	RSBOX[174] = 190
+	RSBOX[8] = 191
+	RSBOX[186] = 192
+	RSBOX[120] = 193
+	RSBOX[37] = 194
+	RSBOX[46] = 195
+	RSBOX[28] = 196
+	RSBOX[166] = 197
+	RSBOX[180] = 198
+	RSBOX[198] = 199
+	RSBOX[232] = 200
+	RSBOX[221] = 201
+	RSBOX[116] = 202
+	RSBOX[31] = 203
+	RSBOX[75] = 204
+	RSBOX[189] = 205
+	RSBOX[139] = 206
+	RSBOX[138] = 207
+	RSBOX[112] = 208
+	RSBOX[62] = 209
+	RSBOX[181] = 210
+	RSBOX[102] = 211
+	RSBOX[72] = 212
+	RSBOX[3] = 213
+	RSBOX[246] = 214
+	RSBOX[14] = 215
+	RSBOX[97] = 216
+	RSBOX[53] = 217
+	RSBOX[87] = 218
+	RSBOX[185] = 219
+	RSBOX[134] = 220
+	RSBOX[193] = 221
+	RSBOX[29] = 222
+	RSBOX[158] = 223
+	RSBOX[225] = 224
+	RSBOX[248] = 225
+	RSBOX[152] = 226
+	RSBOX[17] = 227
+	RSBOX[105] = 228
+	RSBOX[217] = 229
+	RSBOX[142] = 230
+	RSBOX[148] = 231
+	RSBOX[155] = 232
+	RSBOX[30] = 233
+	RSBOX[135] = 234
+	RSBOX[233] = 235
+	RSBOX[206] = 236
+	RSBOX[85] = 237
+	RSBOX[40] = 238
+	RSBOX[223] = 239
+	RSBOX[140] = 240
+	RSBOX[161] = 241
+	RSBOX[137] = 242
+	RSBOX[13] = 243
+	RSBOX[191] = 244
+	RSBOX[230] = 245
+	RSBOX[66] = 246
+	RSBOX[104] = 247
+	RSBOX[65] = 248
+	RSBOX[153] = 249
+	RSBOX[45] = 250
+	RSBOX[15] = 251
+	RSBOX[176] = 252
+	RSBOX[84] = 253
+	RSBOX[187] = 254
+	RSBOX[22] = 255
+
+	# /wiki/Rijndael_key_schedule#
+	var RCON[256]
+	RCON[0] = 141
+	RCON[1] = 1
+	RCON[2] = 2
+	RCON[3] = 4
+	RCON[4] = 8
+	RCON[5] = 16
+	RCON[6] = 32
+	RCON[7] = 64
+	RCON[8] = 128
+	RCON[9] = 27
+	RCON[10] = 54
+	RCON[11] = 108
+	RCON[12] = 216
+	RCON[13] = 171
+	RCON[14] = 77
+	RCON[15] = 154
+	RCON[16] = 47
+	RCON[17] = 94
+	RCON[18] = 188
+	RCON[19] = 99
+	RCON[20] = 198
+	RCON[21] = 151
+	RCON[22] = 53
+	RCON[23] = 106
+	RCON[24] = 212
+	RCON[25] = 179
+	RCON[26] = 125
+	RCON[27] = 250
+	RCON[28] = 239
+	RCON[29] = 197
+	RCON[30] = 145
+	RCON[31] = 57
+	RCON[32] = 114
+	RCON[33] = 228
+	RCON[34] = 211
+	RCON[35] = 189
+	RCON[36] = 97
+	RCON[37] = 194
+	RCON[38] = 159
+	RCON[39] = 37
+	RCON[40] = 74
+	RCON[41] = 148
+	RCON[42] = 51
+	RCON[43] = 102
+	RCON[44] = 204
+	RCON[45] = 131
+	RCON[46] = 29
+	RCON[47] = 58
+	RCON[48] = 116
+	RCON[49] = 232
+	RCON[50] = 203
+	RCON[51] = 141
+	RCON[52] = 1
+	RCON[53] = 2
+	RCON[54] = 4
+	RCON[55] = 8
+	RCON[56] = 16
+	RCON[57] = 32
+	RCON[58] = 64
+	RCON[59] = 128
+	RCON[60] = 27
+	RCON[61] = 54
+	RCON[62] = 108
+	RCON[63] = 216
+	RCON[64] = 171
+	RCON[65] = 77
+	RCON[66] = 154
+	RCON[67] = 47
+	RCON[68] = 94
+	RCON[69] = 188
+	RCON[70] = 99
+	RCON[71] = 198
+	RCON[72] = 151
+	RCON[73] = 53
+	RCON[74] = 106
+	RCON[75] = 212
+	RCON[76] = 179
+	RCON[77] = 125
+	RCON[78] = 250
+	RCON[79] = 239
+	RCON[80] = 197
+	RCON[81] = 145
+	RCON[82] = 57
+	RCON[83] = 114
+	RCON[84] = 228
+	RCON[85] = 211
+	RCON[86] = 189
+	RCON[87] = 97
+	RCON[88] = 194
+	RCON[89] = 159
+	RCON[90] = 37
+	RCON[91] = 74
+	RCON[92] = 148
+	RCON[93] = 51
+	RCON[94] = 102
+	RCON[95] = 204
+	RCON[96] = 131
+	RCON[97] = 29
+	RCON[98] = 58
+	RCON[99] = 116
+	RCON[100] = 232
+	RCON[101] = 203
+	RCON[102] = 141
+	RCON[103] = 1
+	RCON[104] = 2
+	RCON[105] = 4
+	RCON[106] = 8
+	RCON[107] = 16
+	RCON[108] = 32
+	RCON[109] = 64
+	RCON[110] = 128
+	RCON[111] = 27
+	RCON[112] = 54
+	RCON[113] = 108
+	RCON[114] = 216
+	RCON[115] = 171
+	RCON[116] = 77
+	RCON[117] = 154
+	RCON[118] = 47
+	RCON[119] = 94
+	RCON[120] = 188
+	RCON[121] = 99
+	RCON[122] = 198
+	RCON[123] = 151
+	RCON[124] = 53
+	RCON[125] = 106
+	RCON[126] = 212
+	RCON[127] = 179
+	RCON[128] = 125
+	RCON[129] = 250
+	RCON[130] = 239
+	RCON[131] = 197
+	RCON[132] = 145
+	RCON[133] = 57
+	RCON[134] = 114
+	RCON[135] = 228
+	RCON[136] = 211
+	RCON[137] = 189
+	RCON[138] = 97
+	RCON[139] = 194
+	RCON[140] = 159
+	RCON[141] = 37
+	RCON[142] = 74
+	RCON[143] = 148
+	RCON[144] = 51
+	RCON[145] = 102
+	RCON[146] = 204
+	RCON[147] = 131
+	RCON[148] = 29
+	RCON[149] = 58
+	RCON[150] = 116
+	RCON[151] = 232
+	RCON[152] = 203
+	RCON[153] = 141
+	RCON[154] = 1
+	RCON[155] = 2
+	RCON[156] = 4
+	RCON[157] = 8
+	RCON[158] = 16
+	RCON[159] = 32
+	RCON[160] = 64
+	RCON[161] = 128
+	RCON[162] = 27
+	RCON[163] = 54
+	RCON[164] = 108
+	RCON[165] = 216
+	RCON[166] = 171
+	RCON[167] = 77
+	RCON[168] = 154
+	RCON[169] = 47
+	RCON[170] = 94
+	RCON[171] = 188
+	RCON[172] = 99
+	RCON[173] = 198
+	RCON[174] = 151
+	RCON[175] = 53
+	RCON[176] = 106
+	RCON[177] = 212
+	RCON[178] = 179
+	RCON[179] = 125
+	RCON[180] = 250
+	RCON[181] = 239
+	RCON[182] = 197
+	RCON[183] = 145
+	RCON[184] = 57
+	RCON[185] = 114
+	RCON[186] = 228
+	RCON[187] = 211
+	RCON[188] = 189
+	RCON[189] = 97
+	RCON[190] = 194
+	RCON[191] = 159
+	RCON[192] = 37
+	RCON[193] = 74
+	RCON[194] = 148
+	RCON[195] = 51
+	RCON[196] = 102
+	RCON[197] = 204
+	RCON[198] = 131
+	RCON[199] = 29
+	RCON[200] = 58
+	RCON[201] = 116
+	RCON[202] = 232
+	RCON[203] = 203
+	RCON[204] = 141
+	RCON[205] = 1
+	RCON[206] = 2
+	RCON[207] = 4
+	RCON[208] = 8
+	RCON[209] = 16
+	RCON[210] = 32
+	RCON[211] = 64
+	RCON[212] = 128
+	RCON[213] = 27
+	RCON[214] = 54
+	RCON[215] = 108
+	RCON[216] = 216
+	RCON[217] = 171
+	RCON[218] = 77
+	RCON[219] = 154
+	RCON[220] = 47
+	RCON[221] = 94
+	RCON[222] = 188
+	RCON[223] = 99
+	RCON[224] = 198
+	RCON[225] = 151
+	RCON[226] = 53
+	RCON[227] = 106
+	RCON[228] = 212
+	RCON[229] = 179
+	RCON[230] = 125
+	RCON[231] = 250
+	RCON[232] = 239
+	RCON[233] = 197
+	RCON[234] = 145
+	RCON[235] = 57
+	RCON[236] = 114
+	RCON[237] = 228
+	RCON[238] = 211
+	RCON[239] = 189
+	RCON[240] = 97
+	RCON[241] = 194
+	RCON[242] = 159
+	RCON[243] = 37
+	RCON[244] = 74
+	RCON[245] = 148
+	RCON[246] = 51
+	RCON[247] = 102
+	RCON[248] = 204
+	RCON[249] = 131
+	RCON[250] = 29
+	RCON[251] = 58
+	RCON[252] = 116
+	RCON[253] = 232
+	RCON[254] = 203
+	RCON[255] = 141
+	
+	# samiam.org/galois.html #
+	var LTABLE[256]
+	LTABLE[0] = 0
+	LTABLE[1] = 0
+	LTABLE[2] = 25
+	LTABLE[3] = 1
+	LTABLE[4] = 50
+	LTABLE[5] = 2
+	LTABLE[6] = 26
+	LTABLE[7] = 198
+	LTABLE[8] = 75
+	LTABLE[9] = 199
+	LTABLE[10] = 27
+	LTABLE[11] = 104
+	LTABLE[12] = 51
+	LTABLE[13] = 238
+	LTABLE[14] = 223
+	LTABLE[15] = 3
+	LTABLE[16] = 100
+	LTABLE[17] = 4
+	LTABLE[18] = 224
+	LTABLE[19] = 14
+	LTABLE[20] = 52
+	LTABLE[21] = 141
+	LTABLE[22] = 129
+	LTABLE[23] = 239
+	LTABLE[24] = 76
+	LTABLE[25] = 113
+	LTABLE[26] = 8
+	LTABLE[27] = 200
+	LTABLE[28] = 248
+	LTABLE[29] = 105
+	LTABLE[30] = 28
+	LTABLE[31] = 193
+	LTABLE[32] = 125
+	LTABLE[33] = 194
+	LTABLE[34] = 29
+	LTABLE[35] = 181
+	LTABLE[36] = 249
+	LTABLE[37] = 185
+	LTABLE[38] = 39
+	LTABLE[39] = 106
+	LTABLE[40] = 77
+	LTABLE[41] = 228
+	LTABLE[42] = 166
+	LTABLE[43] = 114
+	LTABLE[44] = 154
+	LTABLE[45] = 201
+	LTABLE[46] = 9
+	LTABLE[47] = 120
+	LTABLE[48] = 101
+	LTABLE[49] = 47
+	LTABLE[50] = 138
+	LTABLE[51] = 5
+	LTABLE[52] = 33
+	LTABLE[53] = 15
+	LTABLE[54] = 225
+	LTABLE[55] = 36
+	LTABLE[56] = 18
+	LTABLE[57] = 240
+	LTABLE[58] = 130
+	LTABLE[59] = 69
+	LTABLE[60] = 53
+	LTABLE[61] = 147
+	LTABLE[62] = 218
+	LTABLE[63] = 142
+	LTABLE[64] = 150
+	LTABLE[65] = 143
+	LTABLE[66] = 219
+	LTABLE[67] = 189
+	LTABLE[68] = 54
+	LTABLE[69] = 208
+	LTABLE[70] = 206
+	LTABLE[71] = 148
+	LTABLE[72] = 19
+	LTABLE[73] = 92
+	LTABLE[74] = 210
+	LTABLE[75] = 241
+	LTABLE[76] = 64
+	LTABLE[77] = 70
+	LTABLE[78] = 131
+	LTABLE[79] = 56
+	LTABLE[80] = 102
+	LTABLE[81] = 221
+	LTABLE[82] = 253
+	LTABLE[83] = 48
+	LTABLE[84] = 191
+	LTABLE[85] = 6
+	LTABLE[86] = 139
+	LTABLE[87] = 98
+	LTABLE[88] = 179
+	LTABLE[89] = 37
+	LTABLE[90] = 226
+	LTABLE[91] = 152
+	LTABLE[92] = 34
+	LTABLE[93] = 136
+	LTABLE[94] = 145
+	LTABLE[95] = 16
+	LTABLE[96] = 126
+	LTABLE[97] = 110
+	LTABLE[98] = 72
+	LTABLE[99] = 195
+	LTABLE[100] = 163
+	LTABLE[101] = 182
+	LTABLE[102] = 30
+	LTABLE[103] = 66
+	LTABLE[104] = 58
+	LTABLE[105] = 107
+	LTABLE[106] = 40
+	LTABLE[107] = 84
+	LTABLE[108] = 250
+	LTABLE[109] = 133
+	LTABLE[110] = 61
+	LTABLE[111] = 186
+	LTABLE[112] = 43
+	LTABLE[113] = 121
+	LTABLE[114] = 10
+	LTABLE[115] = 21
+	LTABLE[116] = 155
+	LTABLE[117] = 159
+	LTABLE[118] = 94
+	LTABLE[119] = 202
+	LTABLE[120] = 78
+	LTABLE[121] = 212
+	LTABLE[122] = 172
+	LTABLE[123] = 229
+	LTABLE[124] = 243
+	LTABLE[125] = 115
+	LTABLE[126] = 167
+	LTABLE[127] = 87
+	LTABLE[128] = 175
+	LTABLE[129] = 88
+	LTABLE[130] = 168
+	LTABLE[131] = 80
+	LTABLE[132] = 244
+	LTABLE[133] = 234
+	LTABLE[134] = 214
+	LTABLE[135] = 116
+	LTABLE[136] = 79
+	LTABLE[137] = 174
+	LTABLE[138] = 233
+	LTABLE[139] = 213
+	LTABLE[140] = 231
+	LTABLE[141] = 230
+	LTABLE[142] = 173
+	LTABLE[143] = 232
+	LTABLE[144] = 44
+	LTABLE[145] = 215
+	LTABLE[146] = 117
+	LTABLE[147] = 122
+	LTABLE[148] = 235
+	LTABLE[149] = 22
+	LTABLE[150] = 11
+	LTABLE[151] = 245
+	LTABLE[152] = 89
+	LTABLE[153] = 203
+	LTABLE[154] = 95
+	LTABLE[155] = 176
+	LTABLE[156] = 156
+	LTABLE[157] = 169
+	LTABLE[158] = 81
+	LTABLE[159] = 160
+	LTABLE[160] = 127
+	LTABLE[161] = 12
+	LTABLE[162] = 246
+	LTABLE[163] = 111
+	LTABLE[164] = 23
+	LTABLE[165] = 196
+	LTABLE[166] = 73
+	LTABLE[167] = 236
+	LTABLE[168] = 216
+	LTABLE[169] = 67
+	LTABLE[170] = 31
+	LTABLE[171] = 45
+	LTABLE[172] = 164
+	LTABLE[173] = 118
+	LTABLE[174] = 123
+	LTABLE[175] = 183
+	LTABLE[176] = 204
+	LTABLE[177] = 187
+	LTABLE[178] = 62
+	LTABLE[179] = 90
+	LTABLE[180] = 251
+	LTABLE[181] = 96
+	LTABLE[182] = 177
+	LTABLE[183] = 134
+	LTABLE[184] = 59
+	LTABLE[185] = 82
+	LTABLE[186] = 161
+	LTABLE[187] = 108
+	LTABLE[188] = 170
+	LTABLE[189] = 85
+	LTABLE[190] = 41
+	LTABLE[191] = 157
+	LTABLE[192] = 151
+	LTABLE[193] = 178
+	LTABLE[194] = 135
+	LTABLE[195] = 144
+	LTABLE[196] = 97
+	LTABLE[197] = 190
+	LTABLE[198] = 220
+	LTABLE[199] = 252
+	LTABLE[200] = 188
+	LTABLE[201] = 149
+	LTABLE[202] = 207
+	LTABLE[203] = 205
+	LTABLE[204] = 55
+	LTABLE[205] = 63
+	LTABLE[206] = 91
+	LTABLE[207] = 209
+	LTABLE[208] = 83
+	LTABLE[209] = 57
+	LTABLE[210] = 132
+	LTABLE[211] = 60
+	LTABLE[212] = 65
+	LTABLE[213] = 162
+	LTABLE[214] = 109
+	LTABLE[215] = 71
+	LTABLE[216] = 20
+	LTABLE[217] = 42
+	LTABLE[218] = 158
+	LTABLE[219] = 93
+	LTABLE[220] = 86
+	LTABLE[221] = 242
+	LTABLE[222] = 211
+	LTABLE[223] = 171
+	LTABLE[224] = 68
+	LTABLE[225] = 17
+	LTABLE[226] = 146
+	LTABLE[227] = 217
+	LTABLE[228] = 35
+	LTABLE[229] = 32
+	LTABLE[230] = 46
+	LTABLE[231] = 137
+	LTABLE[232] = 180
+	LTABLE[233] = 124
+	LTABLE[234] = 184
+	LTABLE[235] = 38
+	LTABLE[236] = 119
+	LTABLE[237] = 153
+	LTABLE[238] = 227
+	LTABLE[239] = 165
+	LTABLE[240] = 103
+	LTABLE[241] = 74
+	LTABLE[242] = 237
+	LTABLE[243] = 222
+	LTABLE[244] = 197
+	LTABLE[245] = 49
+	LTABLE[246] = 254
+	LTABLE[247] = 24
+	LTABLE[248] = 13
+	LTABLE[249] = 99
+	LTABLE[250] = 140
+	LTABLE[251] = 128
+	LTABLE[252] = 192
+	LTABLE[253] = 247
+	LTABLE[254] = 112
+	LTABLE[255] = 7
+
+	var ETABLE[256]
+	ETABLE[0] = 1
+	ETABLE[1] = 3
+	ETABLE[2] = 5
+	ETABLE[3] = 15
+	ETABLE[4] = 17
+	ETABLE[5] = 51
+	ETABLE[6] = 85
+	ETABLE[7] = 255
+	ETABLE[8] = 26
+	ETABLE[9] = 46
+	ETABLE[10] = 114
+	ETABLE[11] = 150
+	ETABLE[12] = 161
+	ETABLE[13] = 248
+	ETABLE[14] = 19
+	ETABLE[15] = 53
+	ETABLE[16] = 95
+	ETABLE[17] = 225
+	ETABLE[18] = 56
+	ETABLE[19] = 72
+	ETABLE[20] = 216
+	ETABLE[21] = 115
+	ETABLE[22] = 149
+	ETABLE[23] = 164
+	ETABLE[24] = 247
+	ETABLE[25] = 2
+	ETABLE[26] = 6
+	ETABLE[27] = 10
+	ETABLE[28] = 30
+	ETABLE[29] = 34
+	ETABLE[30] = 102
+	ETABLE[31] = 170
+	ETABLE[32] = 229
+	ETABLE[33] = 52
+	ETABLE[34] = 92
+	ETABLE[35] = 228
+	ETABLE[36] = 55
+	ETABLE[37] = 89
+	ETABLE[38] = 235
+	ETABLE[39] = 38
+	ETABLE[40] = 106
+	ETABLE[41] = 190
+	ETABLE[42] = 217
+	ETABLE[43] = 112
+	ETABLE[44] = 144
+	ETABLE[45] = 171
+	ETABLE[46] = 230
+	ETABLE[47] = 49
+	ETABLE[48] = 83
+	ETABLE[49] = 245
+	ETABLE[50] = 4
+	ETABLE[51] = 12
+	ETABLE[52] = 20
+	ETABLE[53] = 60
+	ETABLE[54] = 68
+	ETABLE[55] = 204
+	ETABLE[56] = 79
+	ETABLE[57] = 209
+	ETABLE[58] = 104
+	ETABLE[59] = 184
+	ETABLE[60] = 211
+	ETABLE[61] = 110
+	ETABLE[62] = 178
+	ETABLE[63] = 205
+	ETABLE[64] = 76
+	ETABLE[65] = 212
+	ETABLE[66] = 103
+	ETABLE[67] = 169
+	ETABLE[68] = 224
+	ETABLE[69] = 59
+	ETABLE[70] = 77
+	ETABLE[71] = 215
+	ETABLE[72] = 98
+	ETABLE[73] = 166
+	ETABLE[74] = 241
+	ETABLE[75] = 8
+	ETABLE[76] = 24
+	ETABLE[77] = 40
+	ETABLE[78] = 120
+	ETABLE[79] = 136
+	ETABLE[80] = 131
+	ETABLE[81] = 158
+	ETABLE[82] = 185
+	ETABLE[83] = 208
+	ETABLE[84] = 107
+	ETABLE[85] = 189
+	ETABLE[86] = 220
+	ETABLE[87] = 127
+	ETABLE[88] = 129
+	ETABLE[89] = 152
+	ETABLE[90] = 179
+	ETABLE[91] = 206
+	ETABLE[92] = 73
+	ETABLE[93] = 219
+	ETABLE[94] = 118
+	ETABLE[95] = 154
+	ETABLE[96] = 181
+	ETABLE[97] = 196
+	ETABLE[98] = 87
+	ETABLE[99] = 249
+	ETABLE[100] = 16
+	ETABLE[101] = 48
+	ETABLE[102] = 80
+	ETABLE[103] = 240
+	ETABLE[104] = 11
+	ETABLE[105] = 29
+	ETABLE[106] = 39
+	ETABLE[107] = 105
+	ETABLE[108] = 187
+	ETABLE[109] = 214
+	ETABLE[110] = 97
+	ETABLE[111] = 163
+	ETABLE[112] = 254
+	ETABLE[113] = 25
+	ETABLE[114] = 43
+	ETABLE[115] = 125
+	ETABLE[116] = 135
+	ETABLE[117] = 146
+	ETABLE[118] = 173
+	ETABLE[119] = 236
+	ETABLE[120] = 47
+	ETABLE[121] = 113
+	ETABLE[122] = 147
+	ETABLE[123] = 174
+	ETABLE[124] = 233
+	ETABLE[125] = 32
+	ETABLE[126] = 96
+	ETABLE[127] = 160
+	ETABLE[128] = 251
+	ETABLE[129] = 22
+	ETABLE[130] = 58
+	ETABLE[131] = 78
+	ETABLE[132] = 210
+	ETABLE[133] = 109
+	ETABLE[134] = 183
+	ETABLE[135] = 194
+	ETABLE[136] = 93
+	ETABLE[137] = 231
+	ETABLE[138] = 50
+	ETABLE[139] = 86
+	ETABLE[140] = 250
+	ETABLE[141] = 21
+	ETABLE[142] = 63
+	ETABLE[143] = 65
+	ETABLE[144] = 195
+	ETABLE[145] = 94
+	ETABLE[146] = 226
+	ETABLE[147] = 61
+	ETABLE[148] = 71
+	ETABLE[149] = 201
+	ETABLE[150] = 64
+	ETABLE[151] = 192
+	ETABLE[152] = 91
+	ETABLE[153] = 237
+	ETABLE[154] = 44
+	ETABLE[155] = 116
+	ETABLE[156] = 156
+	ETABLE[157] = 191
+	ETABLE[158] = 218
+	ETABLE[159] = 117
+	ETABLE[160] = 159
+	ETABLE[161] = 186
+	ETABLE[162] = 213
+	ETABLE[163] = 100
+	ETABLE[164] = 172
+	ETABLE[165] = 239
+	ETABLE[166] = 42
+	ETABLE[167] = 126
+	ETABLE[168] = 130
+	ETABLE[169] = 157
+	ETABLE[170] = 188
+	ETABLE[171] = 223
+	ETABLE[172] = 122
+	ETABLE[173] = 142
+	ETABLE[174] = 137
+	ETABLE[175] = 128
+	ETABLE[176] = 155
+	ETABLE[177] = 182
+	ETABLE[178] = 193
+	ETABLE[179] = 88
+	ETABLE[180] = 232
+	ETABLE[181] = 35
+	ETABLE[182] = 101
+	ETABLE[183] = 175
+	ETABLE[184] = 234
+	ETABLE[185] = 37
+	ETABLE[186] = 111
+	ETABLE[187] = 177
+	ETABLE[188] = 200
+	ETABLE[189] = 67
+	ETABLE[190] = 197
+	ETABLE[191] = 84
+	ETABLE[192] = 252
+	ETABLE[193] = 31
+	ETABLE[194] = 33
+	ETABLE[195] = 99
+	ETABLE[196] = 165
+	ETABLE[197] = 244
+	ETABLE[198] = 7
+	ETABLE[199] = 9
+	ETABLE[200] = 27
+	ETABLE[201] = 45
+	ETABLE[202] = 119
+	ETABLE[203] = 153
+	ETABLE[204] = 176
+	ETABLE[205] = 203
+	ETABLE[206] = 70
+	ETABLE[207] = 202
+	ETABLE[208] = 69
+	ETABLE[209] = 207
+	ETABLE[210] = 74
+	ETABLE[211] = 222
+	ETABLE[212] = 121
+	ETABLE[213] = 139
+	ETABLE[214] = 134
+	ETABLE[215] = 145
+	ETABLE[216] = 168
+	ETABLE[217] = 227
+	ETABLE[218] = 62
+	ETABLE[219] = 66
+	ETABLE[220] = 198
+	ETABLE[221] = 81
+	ETABLE[222] = 243
+	ETABLE[223] = 14
+	ETABLE[224] = 18
+	ETABLE[225] = 54
+	ETABLE[226] = 90
+	ETABLE[227] = 238
+	ETABLE[228] = 41
+	ETABLE[229] = 123
+	ETABLE[230] = 141
+	ETABLE[231] = 140
+	ETABLE[232] = 143
+	ETABLE[233] = 138
+	ETABLE[234] = 133
+	ETABLE[235] = 148
+	ETABLE[236] = 167
+	ETABLE[237] = 242
+	ETABLE[238] = 13
+	ETABLE[239] = 23
+	ETABLE[240] = 57
+	ETABLE[241] = 75
+	ETABLE[242] = 221
+	ETABLE[243] = 124
+	ETABLE[244] = 132
+	ETABLE[245] = 151
+	ETABLE[246] = 162
+	ETABLE[247] = 253
+	ETABLE[248] = 28
+	ETABLE[249] = 36
+	ETABLE[250] = 108
+	ETABLE[251] = 180
+	ETABLE[252] = 199
+	ETABLE[253] = 82
+	ETABLE[254] = 246
+	ETABLE[255] = 1
+
+	# GMUL #
+	function GMUL(gbyte1, gbyte2)
+	start
+        if (0 == gbyte1 || 0 == gbyte2) then
+		start
+            return 0
+        end
+        gbyte1 = LTABLE[gbyte1] + LTABLE[gbyte2]
+        if (gbyte1 > 255) then
+		start
+            gbyte1 = gbyte1 - 255
+        end
+        return ETABLE[gbyte1]
+    end
+	
+	# 128 bit matrix #
+	var mbyte[8192]
+	var mrec[8192]
+	mrec[0] = 1
+	
+	function M128new()
+	start
+		var mnode = mrec[0]
+		if(mrec[mnode] == 0) then mrec[0] = mnode + 16 else mrec[0] = mrec[mnode]
+		return mnode
+	end
+	
+	function M128rowS(mrow, mrbyte)
+	start
+		mbyte[mrow] = mrbyte
+	end
+	
+	function M128rowG(mrow)
+	start
+		return mbyte[mrow]
+	end
+	
+	function M128rcS(mrow, mcol, mrcval)
+	start
+		mbyte[mrow + mcol] = mrcval
+	end
+	
+	function M128rcG(mrow, mcol)
+	start
+		return mbyte[mrow + mcol]
+	end
+	
+	function M128destroy(m128n)
+	start 
+		mrec[m128n] = mrec[0]
+		mrec[0] = m128n
+	end 
+	
+	
+	
+	# AES-128 # 
+	
+	function AESxor4(aesb1, aesb2, aesb3, aesb4)
+	start
+		return xor8(xor8(xor8(aesb1, aesb2), aesb3), aesb4)
+	end 
+	
+	function AESsbyte(m128dat)
+	start
+		var mdatl = m128dat + 16
+		while(mdatl != m128dat)
+		start
+			mbyte[m128dat] = SBOX[mbyte[m128dat]]
+			m128dat = m128dat + 1
+		end
+	end 
+	
+	function AESinvsbyte(m128dat)
+	start
+		var mdatl = m128dat + 16
+		while(mdatl != m128dat)
+		start
+			mbyte[m128dat] = RSBOX[mbyte[m128dat]]
+			m128dat = m128dat + 1
+		end
+	end
+	
+	var AESsrowd[4]
+	function AESshiftrows(m128dat)
+	start
+		m128dat = m128dat + 4
+        AESsrowd[0] = m128rowG(m128dat)
+        AESsrowd[1] = m128rowG(m128dat + 1)
+        AESsrowd[2] = m128rowG(m128dat + 2)
+        AESsrowd[3] = m128rowG(m128dat + 3)
+		m128rowS(m128dat,     AESsrowd[1])
+		m128rowS(m128dat + 1, AESsrowd[2])
+		m128rowS(m128dat + 2, AESsrowd[3])
+		m128rowS(m128dat + 3, AESsrowd[0])
+		m128dat = m128dat + 4
+        AESsrowd[0] = m128rowG(m128dat)
+        AESsrowd[1] = m128rowG(m128dat + 1)
+        AESsrowd[2] = m128rowG(m128dat + 2)
+        AESsrowd[3] = m128rowG(m128dat + 3)
+		m128rowS(m128dat,     AESsrowd[2])
+		m128rowS(m128dat + 1, AESsrowd[3])
+		m128rowS(m128dat + 2, AESsrowd[0])
+		m128rowS(m128dat + 3, AESsrowd[1])
+		m128dat = m128dat + 4
+        AESsrowd[0] = m128rowG(m128dat)
+        AESsrowd[1] = m128rowG(m128dat + 1)
+        AESsrowd[2] = m128rowG(m128dat + 2)
+        AESsrowd[3] = m128rowG(m128dat + 3)
+		m128rowS(m128dat,     AESsrowd[3])
+		m128rowS(m128dat + 1, AESsrowd[0])
+		m128rowS(m128dat + 2, AESsrowd[1])
+		m128rowS(m128dat + 3, AESsrowd[2])
+	end
+	
+	var AESisrd[4]
+	function AESinvsrow(m128dat)
+	start
+		m128dat = m128dat + 4
+        AESisrd[0] = m128rowG(m128dat)
+        AESisrd[1] = m128rowG(m128dat + 1)
+        AESisrd[2] = m128rowG(m128dat + 2)
+        AESisrd[3] = m128rowG(m128dat + 3)
+		m128rowS(m128dat,     AESisrd[3])
+		m128rowS(m128dat + 1, AESisrd[0])
+		m128rowS(m128dat + 2, AESisrd[1])
+		m128rowS(m128dat + 3, AESisrd[2])
+		m128dat = m128dat + 4
+        AESisrd[0] = m128rowG(m128dat)
+        AESisrd[1] = m128rowG(m128dat + 1)
+        AESisrd[2] = m128rowG(m128dat + 2)
+        AESisrd[3] = m128rowG(m128dat + 3)
+		m128rowS(m128dat,     AESisrd[2])
+		m128rowS(m128dat + 1, AESisrd[3])
+		m128rowS(m128dat + 2, AESisrd[0])
+		m128rowS(m128dat + 3, AESisrd[1])
+		m128dat = m128dat + 4
+        AESisrd[0] = m128rowG(m128dat)
+        AESisrd[1] = m128rowG(m128dat + 1)
+        AESisrd[2] = m128rowG(m128dat + 2)
+        AESisrd[3] = m128rowG(m128dat + 3)
+		m128rowS(m128dat,     AESisrd[1])
+		m128rowS(m128dat + 1, AESisrd[2])
+		m128rowS(m128dat + 2, AESisrd[3])
+		m128rowS(m128dat + 3, AESisrd[0])
+	end
+	
+	var AESmrow[4]
+	function AESmixcol(m128dat)
+	start
+		AESmrow[0] = m128rowG(m128dat)
+		AESmrow[1] = m128rowG(m128dat + 4)
+		AESmrow[2] = m128rowG(m128dat + 8)
+		AESmrow[3] = m128rowG(m128dat + 12)
+		m128rowS(m128dat     , AESxor4(GMUL(2, AESmrow[0]), GMUL(3, AESmrow[1]),         AESmrow[2] ,         AESmrow[3] ))
+		m128rowS(m128dat + 4 , AESxor4(        AESmrow[0] , GMUL(2, AESmrow[1]), GMUL(3, AESmrow[2]),         AESmrow[3] ))
+		m128rowS(m128dat + 8 , AESxor4(        AESmrow[0] ,         AESmrow[1] , GMUL(2, AESmrow[2]), GMUL(3, AESmrow[3])))
+		m128rowS(m128dat + 12, AESxor4(GMUL(3, AESmrow[0]),         AESmrow[1] ,         AESmrow[2] , GMUL(2, AESmrow[3])))
+		
+		m128dat = m128dat + 1
+		AESmrow[0] = m128rowG(m128dat)
+		AESmrow[1] = m128rowG(m128dat + 4)
+		AESmrow[2] = m128rowG(m128dat + 8)
+		AESmrow[3] = m128rowG(m128dat + 12)
+		m128rowS(m128dat     , AESxor4(GMUL(2, AESmrow[0]), GMUL(3, AESmrow[1]),         AESmrow[2] ,         AESmrow[3] ))
+		m128rowS(m128dat + 4 , AESxor4(        AESmrow[0] , GMUL(2, AESmrow[1]), GMUL(3, AESmrow[2]),         AESmrow[3] ))
+		m128rowS(m128dat + 8 , AESxor4(        AESmrow[0] ,         AESmrow[1] , GMUL(2, AESmrow[2]), GMUL(3, AESmrow[3])))
+		m128rowS(m128dat + 12, AESxor4(GMUL(3, AESmrow[0]),         AESmrow[1] ,         AESmrow[2] , GMUL(2, AESmrow[3])))
+		
+		m128dat = m128dat + 1
+		AESmrow[0] = m128rowG(m128dat)
+		AESmrow[1] = m128rowG(m128dat + 4)
+		AESmrow[2] = m128rowG(m128dat + 8)
+		AESmrow[3] = m128rowG(m128dat + 12)
+		m128rowS(m128dat     , AESxor4(GMUL(2, AESmrow[0]), GMUL(3, AESmrow[1]),         AESmrow[2] ,         AESmrow[3] ))
+		m128rowS(m128dat + 4 , AESxor4(        AESmrow[0] , GMUL(2, AESmrow[1]), GMUL(3, AESmrow[2]),         AESmrow[3] ))
+		m128rowS(m128dat + 8 , AESxor4(        AESmrow[0] ,         AESmrow[1] , GMUL(2, AESmrow[2]), GMUL(3, AESmrow[3])))
+		m128rowS(m128dat + 12, AESxor4(GMUL(3, AESmrow[0]),         AESmrow[1] ,         AESmrow[2] , GMUL(2, AESmrow[3])))
+		
+		m128dat = m128dat + 1
+		AESmrow[0] = m128rowG(m128dat)
+		AESmrow[1] = m128rowG(m128dat + 4)
+		AESmrow[2] = m128rowG(m128dat + 8)
+		AESmrow[3] = m128rowG(m128dat + 12)
+		m128rowS(m128dat     , AESxor4(GMUL(2, AESmrow[0]), GMUL(3, AESmrow[1]),         AESmrow[2] ,         AESmrow[3] ))
+		m128rowS(m128dat + 4 , AESxor4(        AESmrow[0] , GMUL(2, AESmrow[1]), GMUL(3, AESmrow[2]),         AESmrow[3] ))
+		m128rowS(m128dat + 8 , AESxor4(        AESmrow[0] ,         AESmrow[1] , GMUL(2, AESmrow[2]), GMUL(3, AESmrow[3])))
+		m128rowS(m128dat + 12, AESxor4(GMUL(3, AESmrow[0]),         AESmrow[1] ,         AESmrow[2] , GMUL(2, AESmrow[3])))
+	end
+	
+	var AESimr[4]
+	function AESinvmixcol(m128dat)
+	start
+		AESimr[0] = m128rowG(m128dat)
+		AESimr[1] = m128rowG(m128dat + 4)
+		AESimr[2] = m128rowG(m128dat + 8)
+		AESimr[3] = m128rowG(m128dat + 12)
+		m128rowS(m128dat     , AESxor4(GMUL(14, AESimr[0]), GMUL(11, AESimr[1]), GMUL(13, AESimr[2]), GMUL(9 , AESimr[3])))
+		m128rowS(m128dat + 4 , AESxor4(GMUL(9 , AESimr[0]), GMUL(14, AESimr[1]), GMUL(11, AESimr[2]), GMUL(13, AESimr[3])))
+		m128rowS(m128dat + 8 , AESxor4(GMUL(13, AESimr[0]), GMUL(9 , AESimr[1]), GMUL(14, AESimr[2]), GMUL(11, AESimr[3])))
+		m128rowS(m128dat + 12, AESxor4(GMUL(11, AESimr[0]), GMUL(13, AESimr[1]), GMUL(9 , AESimr[2]), GMUL(14, AESimr[3])))
+		
+		m128dat = m128dat + 1
+		AESimr[0] = m128rowG(m128dat)
+		AESimr[1] = m128rowG(m128dat + 4)
+		AESimr[2] = m128rowG(m128dat + 8)
+		AESimr[3] = m128rowG(m128dat + 12)
+		m128rowS(m128dat     , AESxor4(GMUL(14, AESimr[0]), GMUL(11, AESimr[1]), GMUL(13, AESimr[2]), GMUL(9 , AESimr[3])))
+		m128rowS(m128dat + 4 , AESxor4(GMUL(9 , AESimr[0]), GMUL(14, AESimr[1]), GMUL(11, AESimr[2]), GMUL(13, AESimr[3])))
+		m128rowS(m128dat + 8 , AESxor4(GMUL(13, AESimr[0]), GMUL(9 , AESimr[1]), GMUL(14, AESimr[2]), GMUL(11, AESimr[3])))
+		m128rowS(m128dat + 12, AESxor4(GMUL(11, AESimr[0]), GMUL(13, AESimr[1]), GMUL(9 , AESimr[2]), GMUL(14, AESimr[3])))
+		
+		m128dat = m128dat + 1
+		AESimr[0] = m128rowG(m128dat)
+		AESimr[1] = m128rowG(m128dat + 4)
+		AESimr[2] = m128rowG(m128dat + 8)
+		AESimr[3] = m128rowG(m128dat + 12)
+		m128rowS(m128dat     , AESxor4(GMUL(14, AESimr[0]), GMUL(11, AESimr[1]), GMUL(13, AESimr[2]), GMUL(9 , AESimr[3])))
+		m128rowS(m128dat + 4 , AESxor4(GMUL(9 , AESimr[0]), GMUL(14, AESimr[1]), GMUL(11, AESimr[2]), GMUL(13, AESimr[3])))
+		m128rowS(m128dat + 8 , AESxor4(GMUL(13, AESimr[0]), GMUL(9 , AESimr[1]), GMUL(14, AESimr[2]), GMUL(11, AESimr[3])))
+		m128rowS(m128dat + 12, AESxor4(GMUL(11, AESimr[0]), GMUL(13, AESimr[1]), GMUL(9 , AESimr[2]), GMUL(14, AESimr[3])))
+		
+		m128dat = m128dat + 1
+		AESimr[0] = m128rowG(m128dat)
+		AESimr[1] = m128rowG(m128dat + 4)
+		AESimr[2] = m128rowG(m128dat + 8)
+		AESimr[3] = m128rowG(m128dat + 12)
+		m128rowS(m128dat     , AESxor4(GMUL(14, AESimr[0]), GMUL(11, AESimr[1]), GMUL(13, AESimr[2]), GMUL(9 , AESimr[3])))
+		m128rowS(m128dat + 4 , AESxor4(GMUL(9 , AESimr[0]), GMUL(14, AESimr[1]), GMUL(11, AESimr[2]), GMUL(13, AESimr[3])))
+		m128rowS(m128dat + 8 , AESxor4(GMUL(13, AESimr[0]), GMUL(9 , AESimr[1]), GMUL(14, AESimr[2]), GMUL(11, AESimr[3])))
+		m128rowS(m128dat + 12, AESxor4(GMUL(11, AESimr[0]), GMUL(13, AESimr[1]), GMUL(9 , AESimr[2]), GMUL(14, AESimr[3])))
+		m128dat = m128dat + 1
+	end 
+	
+	
+	function AESaddRoundKey(m128dat, m128cipher)
+	start
+		m128rowS(m128dat     , xor8(m128rowG(m128dat     ), m128rowG(m128cipher     )))
+		m128rowS(m128dat + 1 , xor8(m128rowG(m128dat + 1 ), m128rowG(m128cipher + 1 )))
+		m128rowS(m128dat + 2 , xor8(m128rowG(m128dat + 2 ), m128rowG(m128cipher + 2 )))
+		m128rowS(m128dat + 3 , xor8(m128rowG(m128dat + 3 ), m128rowG(m128cipher + 3 )))
+		m128rowS(m128dat + 4 , xor8(m128rowG(m128dat + 4 ), m128rowG(m128cipher + 4 )))
+		m128rowS(m128dat + 5 , xor8(m128rowG(m128dat + 5 ), m128rowG(m128cipher + 5 )))
+		m128rowS(m128dat + 6 , xor8(m128rowG(m128dat + 6 ), m128rowG(m128cipher + 6 )))
+		m128rowS(m128dat + 7 , xor8(m128rowG(m128dat + 7 ), m128rowG(m128cipher + 7 )))
+		m128rowS(m128dat + 8 , xor8(m128rowG(m128dat + 8 ), m128rowG(m128cipher + 8 )))
+		m128rowS(m128dat + 9 , xor8(m128rowG(m128dat + 9 ), m128rowG(m128cipher + 9 )))
+		m128rowS(m128dat + 10, xor8(m128rowG(m128dat + 10), m128rowG(m128cipher + 10)))
+		m128rowS(m128dat + 11, xor8(m128rowG(m128dat + 11), m128rowG(m128cipher + 11)))
+		m128rowS(m128dat + 12, xor8(m128rowG(m128dat + 12), m128rowG(m128cipher + 12)))
+		m128rowS(m128dat + 13, xor8(m128rowG(m128dat + 13), m128rowG(m128cipher + 13)))
+		m128rowS(m128dat + 14, xor8(m128rowG(m128dat + 14), m128rowG(m128cipher + 14)))
+		m128rowS(m128dat + 15, xor8(m128rowG(m128dat + 15), m128rowG(m128cipher + 15)))
+	end
+	
+	function AESxor3(axb1, axb2, axb3)
+	start
+		return xor8(xor8(axb1, axb2), axb3)
+	end
+	
+	function AESkeySched(m128cipher, m128rounds, m128cstore)
+	start
+		m128rowS(m128cstore     , AESxor3(m128rowG(m128cipher     ), SBOX[m128rowG(m128cipher + 7 )], RCON[m128rounds]))
+		m128rowS(m128cstore + 4 ,    xor8(m128rowG(m128cipher + 4 ), SBOX[m128rowG(m128cipher + 11)]))
+		m128rowS(m128cstore + 8 ,    xor8(m128rowG(m128cipher + 8 ), SBOX[m128rowG(m128cipher + 15)]))
+		m128rowS(m128cstore + 12,    xor8(m128rowG(m128cipher + 12), SBOX[m128rowG(m128cipher + 3 )]))
+		
+		m128rowS(m128cstore + 1 ,    xor8(m128rowG(m128cipher + 1 ), SBOX[m128rowG(m128cipher     )]))
+		m128rowS(m128cstore + 5 ,    xor8(m128rowG(m128cipher + 5 ), SBOX[m128rowG(m128cipher + 4 )]))
+		m128rowS(m128cstore + 9 ,    xor8(m128rowG(m128cipher + 9 ), SBOX[m128rowG(m128cipher + 8 )]))
+		m128rowS(m128cstore + 13,    xor8(m128rowG(m128cipher + 13), SBOX[m128rowG(m128cipher + 12)]))
+		
+		m128rowS(m128cstore + 2 ,    xor8(m128rowG(m128cipher + 2 ), SBOX[m128rowG(m128cipher + 1 )]))
+		m128rowS(m128cstore + 6 ,    xor8(m128rowG(m128cipher + 6 ), SBOX[m128rowG(m128cipher + 5 )]))
+		m128rowS(m128cstore + 10,    xor8(m128rowG(m128cipher + 10), SBOX[m128rowG(m128cipher + 9 )]))
+		m128rowS(m128cstore + 14,    xor8(m128rowG(m128cipher + 14), SBOX[m128rowG(m128cipher + 13)]))
+		
+		m128rowS(m128cstore + 3 ,    xor8(m128rowG(m128cipher + 3 ), SBOX[m128rowG(m128cipher + 2 )]))
+		m128rowS(m128cstore + 7 ,    xor8(m128rowG(m128cipher + 7 ), SBOX[m128rowG(m128cipher + 6 )]))
+		m128rowS(m128cstore + 11,    xor8(m128rowG(m128cipher + 11), SBOX[m128rowG(m128cipher + 10)]))
+		m128rowS(m128cstore + 15,    xor8(m128rowG(m128cipher + 15), SBOX[m128rowG(m128cipher + 14)]))
+		
+		return m128cstore
+	end
+	
+	var aesr[8192]
+	var aesm128[8192]
+	
+	function AESgetM(maes)
+	start
+		return aesm[maes]
+	end
+	
+	function AESsetM(maes, val)
+	start 
+		aesm[maes] = val
+	end
+	
+	aesr[0] = 1
+	function AESnew(m128cipher)
+	start
+		var anode = aesr[0]
+		if(aesr[anode] == 0) then aesr[0] = anode + 11 else aesr[0] = aesr[anode]
+		
+		aesm[anode] = m128cipher
+		
+		AESsetM(anode + 1 , AESkeySched(AESgetM(anode    ), 1 , M128new()))
+		AESsetM(anode + 2 , AESkeySched(AESgetM(anode + 1), 2 , M128new()))
+		AESsetM(anode + 3 , AESkeySched(AESgetM(anode + 2), 3 , M128new()))
+		AESsetM(anode + 4 , AESkeySched(AESgetM(anode + 3), 4 , M128new()))
+		AESsetM(anode + 5 , AESkeySched(AESgetM(anode + 4), 5 , M128new()))
+		AESsetM(anode + 6 , AESkeySched(AESgetM(anode + 5), 6 , M128new()))
+		AESsetM(anode + 7 , AESkeySched(AESgetM(anode + 6), 7 , M128new()))
+		AESsetM(anode + 8 , AESkeySched(AESgetM(anode + 7), 8 , M128new()))
+		AESsetM(anode + 9 , AESkeySched(AESgetM(anode + 8), 9 , M128new()))
+		AESsetM(anode + 10, AESkeySched(AESgetM(anode + 9), 10, M128new()))
+		
+		return anode
+	end
+	
+	function AESdestroy(aesn)
+	start
+		aesr[aesn] = aesr[0]
+		aesr[0] = aesn
+		
+		M128destroy(AESgetM(aesn + 1 ))
+		M128destroy(AESgetM(aesn + 2 ))
+		M128destroy(AESgetM(aesn + 3 ))
+		M128destroy(AESgetM(aesn + 4 ))
+		M128destroy(AESgetM(aesn + 5 ))
+		M128destroy(AESgetM(aesn + 6 ))
+		M128destroy(AESgetM(aesn + 7 ))
+		M128destroy(AESgetM(aesn + 8 ))
+		M128destroy(AESgetM(aesn + 9 ))
+		M128destroy(AESgetM(aesn + 10))
+	end 
+	
+	function AESencrypt(aesn, m128dat)
+	start
+		var aer = 0
+		AESaddRoundKey(m128dat, AESgetM(aesn))
+		repeat(1 to 9 step 1)
+		start
+			aer = aer + 1
+			AESsbyte(m128dat)
+			AESshiftrows(m128dat)
+			AESmixcol(m128dat)
+			AESaddRoundKey(m128dat, AESgetM(aesn + aer))
+		end 
+		aer = aer + 1
+		AESsbyte(m128dat)
+		AESshiftrows(m128dat)
+		
+		AESaddRoundKey(m128dat, AESgetM(aesn + aer))
+	end
+	
+	function AESdecrypt(aesn, m128dat)
+	start
+		var adr = 10
+		AESaddRoundKey(m128dat, AESgetM(aesn + adr))
+		AESinvsrow(m128dat)
+		AESinvsbyte(m128dat)
+		repeat(9 to 1 step -1)
+		start
+			adr = adr - 1
+			AESaddRoundKey(m128dat, AESgetM(aesn + adr))
+			AESinvmixcol(m128dat)
+			AESinvsrow(m128dat)
+			AESinvsbyte(m128dat)
+		end
+		AESaddRoundKey(m128dat, AESgetM(aesn))
+	end
+end
