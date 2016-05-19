@@ -2519,12 +2519,12 @@ start
 	
 	function AESgetM(maes)
 	start
-		return aesm[maes]
+		return aesm128[maes]
 	end
 	
 	function AESsetM(maes, val)
 	start 
-		aesm[maes] = val
+		aesm128[maes] = val
 	end
 	
 	aesr[0] = 1
@@ -2533,7 +2533,7 @@ start
 		var anode = aesr[0]
 		if(aesr[anode] == 0) then aesr[0] = anode + 11 else aesr[0] = aesr[anode]
 		
-		aesm[anode] = m128cipher
+		aesm128[anode] = m128cipher
 		
 		AESsetM(anode + 1 , AESkeySched(AESgetM(anode    ), 1 , M128new()))
 		AESsetM(anode + 2 , AESkeySched(AESgetM(anode + 1), 2 , M128new()))
